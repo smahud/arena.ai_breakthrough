@@ -66,4 +66,22 @@ study's central regularity.
 ## Delivery
 
 Complete local repository, clean tree, green validation; GitHub publishing unavailable on
-this instance (F-10) — runbook in `phase-8-delivery.md`. No claim of publication is made.
+this instance (F-10, re-verified 14:51Z) — runbook in `phase-8-delivery.md`. No claim of
+publication is made.
+
+---
+
+## ADDENDUM — follow-up session (14:51–14:55Z, `report/phase-9-followup.md`)
+
+Two §7 recommendations executed immediately after delivery:
+
+1. **H-1 RESOLVED (Exp-08 → F-16):** batched bash calls execute **sequentially with ~0.13 s
+   pipelined handoffs** (interval-timestamp method; T4 span 4.06 s, T8 span 7.08 s, scaling
+   1.74). This **corrects** item 2 of this summary's earlier framing and F-01's
+   "overlap INFERRED-likely": batching saves round-trips, not execution wall-time. Corrections
+   propagated to findings.md, EXP-02 RESULTS (addendum), architecture-analysis §6, README.
+2. **Transient-fault gap closed (Exp-09 → F-17):** patch-only retry (F-02) left flaky commands
+   unrecoverable (FAILED@1, logged); minimal bounded extension `blind_retries` (default 0,
+   traced) recovers them (DONE@2). Suite now **44/44**; all pre-existing tests unmodified.
+3. Remaining open: H-2 (planner representation), H-3 (cross-turn continuity), H-4 (context
+   pressure), plus Exp-08 residual (non-bash batch timing).

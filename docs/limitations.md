@@ -12,9 +12,11 @@
   external claims about such internals would violate this project's contract.
 - **L-4 Cross-turn continuity untested.** Exp-04 measured within-session continuity only.
   Constraint survival across user messages/days/compaction: UNKNOWN (H-3).
-- **L-5 Scripted vs organic failures.** Exp-03 faults were designed; only one organic failure
-  (F-14, exp02 stream B) was observed. Recovery under adversarial/heisenbug classes
-  (flaky concurrency, resource exhaustion, network partitions mid-call): UNKNOWN.
+- **L-5 Scripted vs organic failures.** Exp-03 faults were designed; organic failures observed:
+  three (F-14 exp02 stream B; minagent test expectation, phase-6; audit false positive, F-08).
+  Transient/flaky class now tested via a deterministic counter-file model (Exp-09, F-17);
+  genuinely nondeterministic flakiness, resource exhaustion, and network partitions mid-call
+  remain UNKNOWN.
 - **L-6 Timing measurements are coarse.** 2-vCPU sandbox; `duration_ms` includes platform
   overhead; true parallel-overlap of batched calls not measurable from results (H-1).
 - **L-7 No user-in-the-loop stress.** Clarification behavior, interrupt handling, and

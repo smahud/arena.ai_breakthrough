@@ -5,10 +5,10 @@ reference architecture reproducing the *observable* functional patterns. Execute
 inside an authorized sandbox on 2026-11-06 by the agentic system under study (first-person
 methodology; see `docs/limitations.md` L-1 for the epistemic ceiling this imposes).
 
-**Status:** research complete · 7/7 experiments executed · 41/41 tests green · validation
-pipeline OK · GitHub delivery **unavailable on this instance** (connector `unsupported`) →
-delivered as a fully committed local git repository; publishing runbook in
-`report/phase-8-delivery.md`.
+**Status:** research complete · **9/9 experiments executed** (7 core + 2 follow-up) ·
+**44/44 tests green** · validation pipeline OK · GitHub delivery **unavailable on this
+instance** (connector `unsupported`, re-verified 14:51Z) → delivered as a fully committed local
+git repository; publishing runbook in `report/phase-8-delivery.md`.
 
 ## What's here
 
@@ -27,8 +27,10 @@ report/                   one report per execution phase + final research summar
 
 ## Headline results (details & classifications in `docs/findings.md`)
 
-1. **Independent tool calls dispatch concurrently** in one batch; failures isolate per unit
-   (F-01, F-15 — VERIFIED behaviorally; true wall-clock overlap INFERRED).
+1. **Independent tool calls dispatch in one batch but execute sequentially** with ~0.13 s
+   pipelined handoffs (Exp-08 interval method: T8/T4 span scaling 1.74, not ~1.0) — batching
+   saves round-trips, not execution time; failures still isolate per unit (F-16, F-15 —
+   VERIFIED; this **corrects** the earlier "overlap likely" inference, per contract rule 2).
 2. **Recovery loop shape** is regular: detect → localize from error text → minimal (1-line)
    patch → re-verify, closing in one extra step; identical for injected and *organic* failures
    (F-02, F-14 — VERIFIED, n=4).

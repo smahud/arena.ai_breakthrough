@@ -26,6 +26,10 @@ class Task:
     validate: dict | None = None      # {"command":…, "expect":[…], "forbid":[…]}
     repair: object = None             # fn(task, attempt, result) -> bool (F-02 minimal patch)
     max_attempts: int = 2             # bounded retries (Exp-03: 1 retry sufficed; +1 margin)
+    blind_retries: int = 0            # EXP-09: identical re-runs allowed WITHOUT a patch, for
+                                      # transient/flaky faults. Default 0 preserves F-02 semantics
+                                      # (deterministic failures are never blindly re-run).
+                                      # Still capped by max_attempts.
     status: str = PENDING
     attempts: int = 0
     result: ToolResult | None = None

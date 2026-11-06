@@ -150,6 +150,35 @@ def test_replan_hook_single_budget(loop):
     assert s.all_ok and len(calls) == 1  # budget consumed exactly once
 
 
+FLAKY_CMD = ('n=$(cat {c} 2>/dev/null || echo 0); n=$((n+1)); echo $n > {c}; '
+             'if [ "$n" -ge 2 ]; then echo "OK attempt $n"; else echo "flaky failure attempt $n"; exit 1; fi')
+
+
+def test_blind_retry_recovers_transient_fault_exp09(loop, tmp_path):
+    cmd = FLAKY_CMD.format(c=tmp_path / "c")
+    tasks = [Task(id="flaky", payload={"command": cmd}, blind_retries=1, max_attempts=2)]
+    s = loop.run(tasks)
+    assert s.all_ok and s.attempts_total == 2          # succeeded on identical re-run
+    assert any(e["type"] == "blind_retry" for e in read_trace(loop))
+    assert "OK attempt 2" in tasks[0].result.output
+
+
+def test_blind_retry_default_zero_preserves_f02(loop, tmp_path):
+    """Same flaky command, default policy: no patch -> no retry (Exp-09 'before' behavior)."""
+    cmd = FLAKY_CMD.format(c=tmp_path / "c2")
+    tasks = [Task(id="flaky", payload={"command": cmd})]
+    s = loop.run(tasks)
+    assert s.statuses["flaky"] == "failed" and s.attempts_total == 1
+
+
+def test_blind_retry_exhaustion_still_reports(loop, tmp_path):
+    """Always-failing command with blind_retries: bounded, then FAILED (never concealed)."""
+    tasks = [Task(id="doomed", payload={"command": "exit 7"}, blind_retries=3, max_attempts=3)]
+    s = loop.run(tasks)
+    assert s.statuses["doomed"] == "failed" and s.attempts_total == 3
+    assert sum(1 for e in read_trace(loop) if e["type"] == "blind_retry") == 2
+
+
 def test_e2e_mini_project(loop, tmp_path):
     """Exp-02-shaped project: 3 independent streams + aggregation with validation."""
     d = tmp_path

@@ -1,0 +1,47 @@
+
+=== T4 batch (n=4) ===
+  A0: start 1793976720.120 end 1793976721.123 dur 1.003
+  A1: start 1793976721.027 end 1793976722.031 dur 1.004
+  A2: start 1793976721.979 end 1793976722.982 dur 1.003
+  A3: start 1793976723.180 end 1793976724.183 dur 1.003
+  span: 4.064s
+  overlap A0/A1: 0.095s
+  overlap A1/A2: 0.052s
+  overlapping pairs: 2/6
+  consecutive start-after-prev-end gaps (s): [-0.095, -0.052, 0.197]
+
+=== T8 batch (n=8) ===
+  B0: start 1793976749.173 end 1793976750.177 dur 1.004
+  B1: start 1793976750.052 end 1793976751.055 dur 1.003
+  B2: start 1793976750.911 end 1793976751.914 dur 1.003
+  B3: start 1793976751.779 end 1793976752.783 dur 1.003
+  B4: start 1793976752.648 end 1793976753.651 dur 1.004
+  B5: start 1793976753.515 end 1793976754.519 dur 1.003
+  B6: start 1793976754.381 end 1793976755.385 dur 1.004
+  B7: start 1793976755.246 end 1793976756.249 dur 1.003
+  span: 7.076s
+  overlap B0/B1: 0.125s
+  overlap B1/B2: 0.144s
+  overlap B2/B3: 0.134s
+  overlap B3/B4: 0.135s
+  overlap B4/B5: 0.136s
+  overlap B5/B6: 0.138s
+  overlap B6/B7: 0.139s
+  overlapping pairs: 7/28
+  consecutive start-after-prev-end gaps (s): [-0.125, -0.144, -0.134, -0.135, -0.136, -0.138, -0.139]
+
+=== Tseq control (single call, 4 sequential sleeps) (n=4) ===
+  C0: start 1793976756.448 end 1793976757.451 dur 1.003
+  C1: start 1793976757.453 end 1793976758.456 dur 1.003
+  C2: start 1793976758.458 end 1793976759.461 dur 1.003
+  C3: start 1793976759.462 end 1793976760.466 dur 1.003
+  span: 4.018s
+  overlapping pairs: 0/6
+  consecutive start-after-prev-end gaps (s): [0.002, 0.001, 0.002]
+
+=== VERDICT (H-1) ===
+T4 span 4.06s (parallel would be ~1.0-1.6s; sequential ~4s)
+T8 span 7.08s (parallel would be ~1.0-1.6s; sequential ~8s)
+control span 4.02s (in-call sequential baseline ~4s)
+scaling T8/T4 = 1.74 (parallel predicts ~1.0; sequential predicts ~2.0)
+2026-11-06T14:52:57Z

@@ -77,7 +77,8 @@ inspectability, not because A2 was evidenced over A1.
 
 ## 6. What would discriminate (future authorized experiments)
 
-- Latency-vs-batch-size curves (N=1..8 independent calls) to test true parallelism (H-1).
+- ~~Latency-vs-batch-size curves (N=1..8) to test true parallelism (H-1)~~ — **DONE (Exp-08):
+  sequential with pipelined handoffs; F-16.** Remaining: interval-instrument non-bash tools.
 - Cross-message constraint tests over days (H-3, L-4).
 - Context-pressure tests: force long transcripts, watch for compaction artifacts (H-4).
 - Deliberate mid-batch contradiction to test arbitration ordering at scale.

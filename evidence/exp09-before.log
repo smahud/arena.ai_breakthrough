@@ -1,0 +1,7 @@
+BEFORE-CHANGE RESULT: {'flaky': 'failed'} attempts_total: 1
+  tool_result {'attempt': 1, 'exit_code': 1, 'ok': False, 'task': 'flaky'}
+  failure_classified {'attempt': 1, 'cls': 'runtime', 'task': 'flaky'}
+  run_summary {}
+counter file: 1 -> command invoked 1 time(s)
+GAP CONFIRMED
+2026-11-06T14:53:37Z

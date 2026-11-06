@@ -127,8 +127,15 @@ class AgentLoop:
         cls = RecoveryPolicy.classify(result)
         self.trace.event(type="failure_classified", task=task.id, cls=cls,
                          attempt=task.attempts)
-        if task.attempts < task.max_attempts and RecoveryPolicy.attempt_repair(task, result):
-            self.trace.event(type="repair_applied", task=task.id, attempt=task.attempts)
-            task.status = PENDING   # retry on next wave (F-02: re-run same command)
-        else:
-            task.status = FAILED    # reported, never concealed (contract rule 9)
+        if task.attempts < task.max_attempts:
+            if RecoveryPolicy.attempt_repair(task, result):
+                self.trace.event(type="repair_applied", task=task.id, attempt=task.attempts)
+                task.status = PENDING   # retry on next wave (F-02: re-run after patch)
+                return
+            if task.blind_retries > 0 and task.attempts <= task.blind_retries:
+                # EXP-09: transient fault — identical re-run may succeed; no patch applied.
+                self.trace.event(type="blind_retry", task=task.id, attempt=task.attempts,
+                                 remaining=min(task.blind_retries, task.max_attempts - 1) - task.attempts + 1)
+                task.status = PENDING
+                return
+        task.status = FAILED    # reported, never concealed (contract rule 9)

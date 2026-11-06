@@ -17,4 +17,6 @@ audit; a component without a row here must be deleted.
 | StateStore atomic JSON, restart-survivable | Exp-06 SIGKILL durability pattern | F-05/Exp-06 S3 |
 | TraceReporter append-only JSONL | directive §7 evidence & traceability | requirement |
 | Single global replan budget | observed replanning was evidence-driven and rare | F-05; avoids speculative complexity |
+| `Task.blind_retries` (default 0) + `blind_retry` trace event | Exp-09 before/after logs: transient fault FAILED@1 under patch-only policy, DONE@2 with bounded blind retry | F-17 |
+| Executor note: in-process threads unaffected by F-16 | minagent runs inside ONE platform call; concurrency test measures real overlap (3×0.25 s < 0.6 s wall) | F-16, F-01 |
 | NO rollback engine / NO bus / NO vendor SDK | absence-of-evidence + contract rule 3 | L-5, L-8 |

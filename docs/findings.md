@@ -12,11 +12,15 @@ confidence · reproduction · residual uncertainty. Full raw data lives in `evid
 Three `bash` calls issued in one assistant message returned three independent structured
 results (637/380/468 ms). Eight `write_file` calls likewise returned in one batch.
 *Interpretation:* the execution layer accepts and processes batched independent tool calls in
-a single round-trip; work-unit concurrency is real at tool granularity.
-*Alternatives:* results could be produced sequentially server-side; the returned data cannot
-distinguish true overlap. *Confidence:* batched dispatch & independent results **VERIFIED**;
-wall-clock overlap **INFERRED** (likely). *Repro:* any turn issuing N independent bash calls;
-compare per-call `duration_ms` vs turn latency. *Uncertainty:* no overlap timer exposed.
+a single round-trip. ~~Work-unit concurrency is real at tool granularity~~ — **CORRECTED by
+Exp-08 (14:52Z):** batched calls execute *sequentially* with ~0.13 s pipelined handoffs; the
+batch economy is round-trip elimination, not concurrent execution (see F-16).
+*Alternatives:* the earlier "likely parallel" reading was an inference from batch acceptance;
+interval timestamps (Exp-08) refuted it. *Confidence:* batched dispatch & independent results
+**VERIFIED**; wall-clock overlap **REFUTED → F-16 VERIFIED (sequential+pipelined)** for bash
+calls in this environment. *Repro:* `experiments/experiment-08/` interval method.
+*Uncertainty:* non-bash tool types not interval-instrumented (no clock access); platform-
+specificity UNKNOWN.
 
 **F-02 — Recovery loop shape is detect→localize→minimal-patch→re-verify** · RQ3 · Exp-03 (+F-14)
 All 3 injected faults and 1 natural fault (F-14) followed the identical loop, each closing in
@@ -99,8 +103,28 @@ Stream B's test failure did not prevent streams A and C from completing green in
 batch; the failure was handled in a later sequential step. Batched execution isolates unit
 failures; aggregation is where failures surface. *Confidence:* **VERIFIED**.
 
-**Open questions (HYPOTHESIS/UNKNOWN):** H-1 whether batched calls execute on truly parallel
-workers or fast sequential loop (UNKNOWN, F-01); H-2 whether planning is a distinct internal
+**F-16 — Batched tool calls execute sequentially with pipelined handoffs** · RQ2 · Exp-08
+Each of 4 (then 8) batched bash calls epoch-stamped its own `sleep 1` interval: T4 span 4.064 s,
+T8 span 7.076 s, scaling 1.74 (parallel predicts ≈1.0); overlaps occur only between *adjacent*
+calls (~0.05–0.14 s — next starts before previous finishes), never non-adjacent. Per-call
+`duration_ms` (~1.06 s, uniform) could not discriminate — the interval method was required.
+*Interpretation:* one sandbox worker (INFERRED) processing a batch queue with pipelined
+teardown/startup; batching saves model↔platform round-trips, not execution wall-time.
+Corrects F-01/Exp-02 interpretations (correction addenda filed in both).
+*Confidence:* **VERIFIED** (raw epochs preserved, analysis reproducible). *Uncertainty:*
+write_file-batch timing UNKNOWN; other platforms UNKNOWN.
+
+**F-17 — Transient faults require an explicit, bounded, off-by-default blind-retry budget** · RQ3 · Exp-09
+Deterministic-fault policy (retry only after patch, F-02) left a flaky command unrecoverable:
+FAILED@1 with the success-on-attempt-2 command never re-run (`exp09-before.log`, GAP CONFIRMED).
+Minimal extension (`Task.blind_retries=0` default; +1 branch; `blind_retry` trace event)
+recovered it DONE@2 (`exp09-after.log`) with exhaustion still reported (3 new tests; suite
+44/44; pre-existing 41 tests unmodified). *Confidence:* **VERIFIED** in minagent; policy
+generalization to agents at large **INFERRED**. *Uncertainty:* genuinely nondeterministic
+flakiness untested (L-5 remainder).
+
+**Open questions (HYPOTHESIS/UNKNOWN):** ~~H-1~~ **RESOLVED by Exp-08 → F-16 (sequential+
+pipelined, not parallel)**; H-2 whether planning is a distinct internal
 phase or emerges per-step from the same generative process (UNKNOWN — both architectures
 predict all observations here; see architecture-analysis §5); H-3 cross-turn constraint
 persistence (UNKNOWN, L-4); H-4 behavior under context-window pressure (UNKNOWN — session was

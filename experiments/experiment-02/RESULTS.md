@@ -39,3 +39,14 @@ Independent work units decompose cleanly and can be dispatched concurrently at t
 granularity; integration is a separate sequential aggregation step. Coordination cost was zero
 between streams (no shared state) and one pipeline step for aggregation. The dominant risk
 observed was not scheduling but *validation signal integrity* (finding 3).
+
+## ADDENDUM — correction issued 2026-11-06T14:53Z (contract rule 2)
+
+Experiment 08 (interval-timestamp method) showed batched bash calls execute **sequentially with
+~0.13 s pipelined handoffs**, not in wall-clock parallel: streams A/B/C ran one after another
+inside their batch. The phrase "dispatched concurrently" above is correct only at the
+*dispatch* level (one round-trip, three independent results); the execution-overlap reading
+("INFERRED-likely" in observation 1, PARTIAL/UNKNOWN in S4) is hereby **resolved as refuted** —
+see F-16 and `experiments/experiment-08/RESULTS.md`. Conclusions about decomposition, failure
+isolation (F-15 — which does not depend on overlap: B's failure surfaced in its own result
+either way), and aggregation are unaffected.

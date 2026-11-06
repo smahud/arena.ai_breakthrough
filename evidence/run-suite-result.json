@@ -1,5 +1,5 @@
 {
-  "started_utc": "2026-11-06T14:15:05Z",
+  "started_utc": "2026-11-06T14:56:06Z",
   "steps": [
     {
       "name": "imports",
@@ -9,12 +9,12 @@
     {
       "name": "pytest",
       "ok": true,
-      "detail": "41 passed in 0.36s"
+      "detail": "44 passed in 0.41s"
     },
     {
       "name": "server_up",
       "ok": true,
-      "detail": "port 54919"
+      "detail": "port 33797"
     },
     {
       "name": "frontend",
@@ -37,6 +37,6 @@
       "detail": "DELETE -> 204"
     }
   ],
-  "finished_utc": "2026-11-06T14:15:05Z",
+  "finished_utc": "2026-11-06T14:56:07Z",
   "all_ok": true
 }

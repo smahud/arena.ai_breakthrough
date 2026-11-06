@@ -33,6 +33,9 @@ because A2 was evidenced over A1/A3 (§5 there). Every component is justified by
    decomposition; default is deterministic (testability, C-1).
 2. **Executor** — runs ready tasks; independent tasks dispatched concurrently
    (`ThreadPoolExecutor`, max 4 — 2 vCPU measured, F-09); dependent tasks strictly after deps.
+   *F-16 note:* platform-level call batching executes sequentially, but the reference
+   implementation lives inside ONE platform call, where in-process thread parallelism is real
+   and measured (wall < 0.6 s for 3×0.25 s tasks).
 3. **ToolRegistry / adapters** — uniform `run(payload) -> ToolResult(ok, output, exit_code,
    duration_ms, command)`; adapters: `shell` (subprocess w/ timeout + `pipefail` semantics),
    `write_file` (atomic via tmp+replace), `python_inline`. Result shape mirrors the platform

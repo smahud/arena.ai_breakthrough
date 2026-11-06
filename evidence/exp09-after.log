@@ -1,0 +1,24 @@
+=== EXP-09 AFTER-CHANGE 2026-11-06T14:54:15Z ===
+AFTER-CHANGE RESULT: {'flaky': 'done'} attempts_total: 2
+  tool_result {'attempt': 1, 'exit_code': 1, 'ok': False, 'task': 'flaky'}
+  failure_classified {'attempt': 1, 'cls': 'runtime', 'task': 'flaky'}
+  blind_retry {'attempt': 1, 'task': 'flaky'}
+  tool_result {'attempt': 2, 'exit_code': 0, 'ok': True, 'task': 'flaky'}
+  run_summary {}
+
+=== FULL SUITE ===
+44 passed in 0.45s
+FULL_EXIT=0
+=== PIPELINE ===
+RESULT: OK -> /home/user/arena.ai_breakthrough/evidence/run-suite-result.json
+PIPE_EXIT=0
+=== git hygiene: untrack remaining __pycache__ (snapshot-exclusion mismatch, F-12 extension) ===
+D  benchmarks/workstreams/__pycache__/pipeline.cpython-313.pyc
+D  benchmarks/workstreams/__pycache__/test_pipeline.cpython-313-pytest-9.0.3.pyc
+D  benchmarks/workstreams/stream_a/__pycache__/slugutil.cpython-313.pyc
+D  benchmarks/workstreams/stream_a/__pycache__/test_slugutil.cpython-313-pytest-9.0.3.pyc
+D  benchmarks/workstreams/stream_b/__pycache__/test_textstats.cpython-313-pytest-9.0.3.pyc
+D  benchmarks/workstreams/stream_b/__pycache__/textstats.cpython-313.pyc
+D  benchmarks/workstreams/stream_c/__pycache__/jsonstore.cpython-313.pyc
+D  benchmarks/workstreams/stream_c/__pycache__/test_jsonstore.cpython-313-pytest-9.0.3.pyc
+2026-11-06T14:54:17Z
