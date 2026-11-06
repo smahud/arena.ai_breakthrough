@@ -1,0 +1,42 @@
+{
+  "started_utc": "2026-11-06T13:58:28Z",
+  "steps": [
+    {
+      "name": "imports",
+      "ok": true,
+      "detail": "all modules import"
+    },
+    {
+      "name": "pytest",
+      "ok": true,
+      "detail": "10 passed in 0.02s"
+    },
+    {
+      "name": "server_up",
+      "ok": true,
+      "detail": "port 44471"
+    },
+    {
+      "name": "frontend",
+      "ok": true,
+      "detail": "GET / -> 200"
+    },
+    {
+      "name": "post_task",
+      "ok": true,
+      "detail": "POST -> 201"
+    },
+    {
+      "name": "list_contains_task",
+      "ok": true,
+      "detail": "GET -> 200"
+    },
+    {
+      "name": "delete_task",
+      "ok": true,
+      "detail": "DELETE -> 204"
+    }
+  ],
+  "finished_utc": "2026-11-06T13:58:29Z",
+  "all_ok": true
+}

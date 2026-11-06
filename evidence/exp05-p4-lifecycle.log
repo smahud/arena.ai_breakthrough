@@ -1,0 +1,16 @@
+=== P4 cross-call liveness check 2026-11-06T14:00:11Z ===
+--- start_process server (port 8199), checked from a NEW bash call ---
+{"status": "ok"} HTTP 200
+--- nohup server (port 8198), checked from a NEW bash call (parent call timed out) ---
+{"status": "ok"} HTTP 200
+--- process table ---
+user        1986  0.0  0.9 102532 18716 ?        S    13:58   0:00 python3 -m taskledger.server 8199
+user        2013  0.0  0.0   4056  1992 ?        S    13:58   0:00 /bin/bash -l -c cd /home/user/arena.ai_breakthrough/src && nohup python3 -m taskledger.server 8198 > /tmp/nohup-server.log 2>&1 & echo "nohup_pid=$!"; sleep 1.5; echo "--- curl within SAME bash call ---"; curl -s -w "\nHTTP %{http_code}\n" http://127.0.0.1:8198/api/health; date -u +%FT%TZ
+user        2015  0.0  0.9 102532 18700 ?        S    13:58   0:00 python3 -m taskledger.server 8198
+--- cleanup: kill nohup server (unmanaged; platform cannot stop_process it) ---
+--- POST-MORTEM 2026-11-06T14:00:27Z: previous call exit_code=-1, output truncated after 'cleanup' line ---
+diagnosis: pkill -f pattern 'taskledger.server 8198' also matched the invoking shell's own cmdline (pid 2013 seen in ps above), killing the session mid-script.
+--- state check from fresh call ---
+8198 down (pkill effective on target before self-kill)
+no 8198 process remains
+{"status": "ok"} HTTP 200

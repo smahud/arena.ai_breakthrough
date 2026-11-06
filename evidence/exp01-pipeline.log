@@ -1,0 +1,11 @@
+=== EXP-01 VALIDATION PIPELINE ===
+[PASS] imports: all modules import
+[PASS] pytest: 10 passed in 0.02s
+[PASS] server_up: port 44471
+[PASS] frontend: GET / -> 200
+[PASS] post_task: POST -> 201
+[PASS] list_contains_task: GET -> 200
+[PASS] delete_task: DELETE -> 204
+RESULT: OK -> /home/user/arena.ai_breakthrough/evidence/run-suite-result.json
+PIPELINE_EXIT=0
+

@@ -1,0 +1,7 @@
+.                                                                        [100%]
+1 passed in 0.01s
+INTEGRATION_EXIT=0
+--- cross-import audit (S3): streams must not import each other ---
+/home/user/arena.ai_breakthrough/benchmarks/workstreams/stream_a/slugutil.py:2:import re
+/home/user/arena.ai_breakthrough/benchmarks/workstreams/stream_c/jsonstore.py:2:import json, os, tempfile
+2026-11-06T13:56:03Z

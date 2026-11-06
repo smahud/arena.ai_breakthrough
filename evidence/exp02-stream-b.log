@@ -1,0 +1,20 @@
+F..                                                                      [100%]
+=================================== FAILURES ===================================
+_________________________________ test_simple __________________________________
+
+    def test_simple():
+        s = textstats("alpha bb c")
+>       assert s == {"words": 3, "chars": 10, "avg_word_len": 3.0, "longest": "alpha"}
+E       AssertionError: assert {'avg_word_le...', 'words': 3} == {'avg_word_le...', 'words': 3}
+E         
+E         Omitting 3 identical items, use -vv to show
+E         Differing items:
+E         {'avg_word_len': 2.67} != {'avg_word_len': 3.0}
+E         Use -v to get more diff
+
+test_textstats.py:5: AssertionError
+=========================== short test summary info ============================
+FAILED test_textstats.py::test_simple - AssertionError: assert {'avg_word_le....
+1 failed, 2 passed in 0.02s
+STREAM_B_EXIT=0
+2026-11-06T13:55:25Z

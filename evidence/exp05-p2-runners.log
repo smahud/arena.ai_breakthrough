@@ -1,0 +1,10 @@
+=== EXP-05 P2: pytest vs unittest on same suite ===
+..........                                                               [100%]
+10 passed in 0.01s
+pytest_wall_ms=341
+Ran 0 tests in 0.000s
+
+NO TESTS RAN
+unittest_wall_ms=57
+note: unittest discovery on pytest-style functions -> observe behavior
+2026-11-06T13:58:29Z

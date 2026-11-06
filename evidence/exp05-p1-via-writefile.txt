@@ -1,0 +1,4 @@
+EXP05-P1 canonical payload v1
+alpha-bravo-charlie 0123456789
+The quick brown fox jumps over the lazy dog.
+End of payload.

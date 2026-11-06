@@ -1,0 +1,49 @@
+=== EXP-03 controlled fault injection 2026-11-06T14:01:42Z ===
+
+--- F1: syntax error (compile-time class) ---
+  File "/home/user/arena.ai_breakthrough/experiments/experiment-03/faults/f1_faulty.py", line 1
+    def area(w, h)
+                  ^
+SyntaxError: expected ':'
+F1_FIRST_EXIT=1
+F1 fixed: area(3,4)=12
+F1_FIXED_EXIT=0
+
+--- F2: logic off-by-one caught by test (test-time class) ---
+.F.                                                                      [100%]
+=================================== FAILURES ===================================
+________________________________ test_remainder ________________________________
+
+>   def test_remainder(): assert pages_needed(11, 5) == 3
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   assert 2 == 3
+E    +  where 2 = pages_needed(11, 5)
+
+faults/test_f2.py:4: AssertionError
+=========================== short test summary info ============================
+FAILED faults/test_f2.py::test_remainder - assert 2 == 3
+1 failed, 2 passed in 0.01s
+F2_FIRST_EXIT=1
+...                                                                      [100%]
+3 passed in 0.01s
+F2_FIXED_EXIT=0
+
+--- F3: runtime/environment class ---
+/bin/bash: line 27: definitely-not-a-real-tool-xyz: command not found
+F3_MISSING_BIN_EXIT=127  (127=command not found)
+Traceback (most recent call last):
+  File "/home/user/arena.ai_breakthrough/experiments/experiment-03/faults/f3_partial.py", line 5, in <module>
+    open("/nonwritable-root/step3.txt", "w").write("boom\n")   # fails mid-way leaving partial state
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/nonwritable-root/step3.txt'
+F3_FIRST_EXIT=1
+step0.txt
+step1.txt
+step2.txt
+(partial state above left by crashed run)
+F3_FIXED_EXIT=0
+step0.txt
+step1.txt
+step2.txt
+step3.txt
+2026-11-06T14:01:43Z
