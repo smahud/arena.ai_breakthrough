@@ -1,0 +1,62 @@
+=== minagent validation 2026-11-06T14:13:24Z ===
+......F......                                                            [100%]
+=================================== FAILURES ===================================
+______________ test_retry_budget_exhausted_reported_not_concealed ______________
+
+loop = <minagent.agent.AgentLoop object at 0x7fa6ee4f4d60>
+
+    def test_retry_budget_exhausted_reported_not_concealed(loop):
+        tasks = [Task(id="f", payload={"command": "exit 3"}, repair=lambda t, a, r: False,
+                      max_attempts=2)]
+        s = loop.run(tasks)
+        assert not s.all_ok and s.failures == ["f"] and s.statuses["f"] == "failed"
+>       assert sum(1 for e in read_trace(loop) if e["type"] == "failure_classified") == 2
+E       assert 1 == 2
+E        +  where 1 = sum(<generator object test_retry_budget_exhausted_reported_not_concealed.<locals>.<genexpr> at 0x7fa6ee4ba400>)
+
+tests/test_minagent.py:91: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_minagent.py::test_retry_budget_exhausted_reported_not_concealed
+1 failed, 12 passed in 0.37s
+MINAGENT_EXIT=1
+
+=== FULL SUITE ===
+......F..................................                                [100%]
+=================================== FAILURES ===================================
+______________ test_retry_budget_exhausted_reported_not_concealed ______________
+
+loop = <minagent.agent.AgentLoop object at 0x7fd74b4f5220>
+
+    def test_retry_budget_exhausted_reported_not_concealed(loop):
+        tasks = [Task(id="f", payload={"command": "exit 3"}, repair=lambda t, a, r: False,
+                      max_attempts=2)]
+        s = loop.run(tasks)
+        assert not s.all_ok and s.failures == ["f"] and s.statuses["f"] == "failed"
+>       assert sum(1 for e in read_trace(loop) if e["type"] == "failure_classified") == 2
+E       assert 1 == 2
+E        +  where 1 = sum(<generator object test_retry_budget_exhausted_reported_not_concealed.<locals>.<genexpr> at 0x7fd74b4a6c20>)
+
+tests/test_minagent.py:91: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_minagent.py::test_retry_budget_exhausted_reported_not_concealed
+1 failed, 40 passed in 0.37s
+FULL_EXIT=1
+
+=== EXP-01 PIPELINE RE-RUN (post all changes) ===
+[PASS] imports: all modules import
+[FAIL] pytest: 1 failed, 40 passed in 0.36s
+[PASS] server_up: port 47329
+[PASS] frontend: GET / -> 200
+[PASS] post_task: POST -> 201
+[PASS] list_contains_task: GET -> 200
+[PASS] delete_task: DELETE -> 204
+RESULT: FAILED -> /home/user/arena.ai_breakthrough/evidence/run-suite-result.json
+PIPE_EXIT=1
+=== RECOVERY RE-RUN 2026-11-06T14:13:59Z ===
+.........................................                                [100%]
+41 passed in 0.40s
+FULL_EXIT=0
+[PASS] list_contains_task: GET -> 200
+[PASS] delete_task: DELETE -> 204
+RESULT: OK -> /home/user/arena.ai_breakthrough/evidence/run-suite-result.json
+PIPE_EXIT=0

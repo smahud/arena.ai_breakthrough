@@ -1,0 +1,47 @@
+=== PHASE 7 integrity audit 2026-11-06T14:15:04Z ===
+--- A: every evidence file referenced in docs exists ---
+all referenced evidence files present
+--- B: evidence inventory ---
+23
+exp01-pipeline.log
+exp02-integration.log
+exp02-stream-a.log
+exp02-stream-b-fix.log
+exp02-stream-b.log
+exp02-stream-c.log
+exp03-faults.log
+exp04-audit.log
+exp05-p1-hashes.log
+exp05-p1-via-heredoc.txt
+exp05-p1-via-python.txt
+exp05-p1-via-writefile.txt
+exp05-p2-runners.log
+exp05-p4-lifecycle.log
+exp06-diffstat.log
+exp06-pre-change-commit.txt
+exp06-verification.log
+exp07-semver-spec.md
+exp07-tests.log
+phase1-environment-probe.log
+phase6-minagent-validation.log
+phase7-integrity-audit.log
+run-suite-result.json
+--- C: overclaim word scan in docs (claim-hygiene heuristic) ---
+no internal-mechanism confirmation claims found
+--- D: final full validation ---
+41 passed in 0.36s
+PYTEST_EXIT=0
+RESULT: OK -> /home/user/arena.ai_breakthrough/evidence/run-suite-result.json
+PIPE_EXIT=0
+--- E: git working tree ---
+ M evidence/exp04-audit.log
+ M evidence/run-suite-result.json
+?? docs/architecture-analysis.md
+?? docs/context-management.md
+?? docs/execution-lifecycle.md
+?? docs/findings.md
+?? docs/limitations.md
+?? docs/orchestration-analysis.md
+?? docs/public-capabilities.md
+?? docs/tool-behavior.md
+2026-11-06T14:15:05Z

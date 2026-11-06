@@ -8,3 +8,9 @@ C1_AUDIT_EXIT=1
 C2: no external http(s) resource references in index.html
 --- pytest third-party use is permitted by C-1 (testing only) ---
 2026-11-06T14:05:13Z
+
+=== AUDIT REFINEMENT (false-positive resolution) 2026-11-06T14:06:13Z ===
+First pass flagged tests/test_semverlite.py: pytest. C-1 text: 'pytest permitted for testing only'.
+Refined rule: pytest allowed in tests/ and test_*.py; banned everywhere else.
+files scanned: 21; runtime third-party imports: 0
+C1_AUDIT_REFINED_EXIT=0 (0 = C-1 holds: zero third-party imports outside sanctioned test usage)
