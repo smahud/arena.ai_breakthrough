@@ -1,0 +1,6 @@
+UTC 2026-11-06T16:20:00Z
+User-facing bounded timeout result: bash status=timeout, exit_code=null, duration_ms=1325, stdout TIMEOUT_TASK_STARTED 1793981981536344529; independently dispatched write_file timeout-sibling.txt status=success.
+start_record: {'start_ns': 1793981981536344529, 'planned_sleep_s': 2}
+healthy_sibling: Independent sibling of bounded timeout call succeeded.
+end_record_exists: True
+end_record: {'end_ns': 1793981983536761521} inside_elapsed_s: 2.0

@@ -1,0 +1,8 @@
+EXPLORATORY X1 matched-N/d explicit-wrapper trial: 4 bash calls, 1.0s each
+start_utc 2026-11-06T17:35:04.143765+00:00
+span_s 1.043323 overlaps 6 /6 pairs [(0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3)]
+start_order [0, 3, 1, 2]
+ordered_start_gaps_ms [22.759346, 10.471162, 9.979337]
+duration_range_inside_s [1.000237, 1.000218, 1.000101, 1.000113]
+historical_Exp08_T4_span_s 4.064 historical_overlaps 2 /6 from evidence/phase2/baseline-evidence-crosscheck.log
+comparison: N=4,d=1.0 alone insufficient to force historical mostly serial span in this wrapper/session; invocation and session confounded.
