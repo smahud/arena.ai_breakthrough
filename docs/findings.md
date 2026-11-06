@@ -123,6 +123,17 @@ recovered it DONE@2 (`exp09-after.log`) with exhaustion still reported (3 new te
 generalization to agents at large **INFERRED**. *Uncertainty:* genuinely nondeterministic
 flakiness untested (L-5 remainder).
 
+**F-18 — Session-boundary state loss in excluded paths** · environment/process · Phase-9 incident
+Second-session commit failed (`Author identity unknown`, exit 128): repo-local `.git/config`
+is excluded from cross-message workspace snapshots (platform credential-path policy), so
+session-1 git identity did not survive. Same family as the phantom `.pyc` deletions
+(`__pycache__` excluded but previously tracked). *Interpretation:* any state stored in
+snapshot-excluded paths is session-scoped; persistence requires files outside excluded paths
+(e.g. `~/.gitconfig`) or re-establishment at session start. *Confidence:* **VERIFIED** (both
+incidents directly observed, fixes applied). *Repro:* configure repo-local git identity, start
+a new message, attempt a commit. *Mitigation adopted:* global identity + commit-readiness
+check recommended for validation pipelines.
+
 **Open questions (HYPOTHESIS/UNKNOWN):** ~~H-1~~ **RESOLVED by Exp-08 → F-16 (sequential+
 pipelined, not parallel)**; H-2 whether planning is a distinct internal
 phase or emerges per-step from the same generative process (UNKNOWN — both architectures

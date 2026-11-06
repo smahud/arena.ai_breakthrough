@@ -34,3 +34,15 @@ C-1 audit unaffected (extension is stdlib-only, no new imports).
 
 None from contract; one prior conclusion revised by new evidence (item 3) — the intended
 behavior of an evidence-driven process, logged rather than silently edited.
+
+## Incident log (this session)
+
+- **Commit blocked: `Author identity unknown` (exit 128).** Root cause: the platform excludes
+  `.git/config` from cross-message snapshots (credential-path policy), so the repo-local
+  identity configured in session 1 was gone in session 2. Fix: identity set in the persistent
+  `~/.gitconfig` (workspace file, not an excluded path) + repo-local re-set. Recorded as
+  **F-18** in findings.md: *environment state that lives in excluded paths must be
+  re-established (or made persistent outside them) at the start of every session; validation
+  pipelines should include a commit-readiness check.*
+- 15 phantom-deleted tracked `.pyc` files (same root-cause family: snapshot exclusions vs git
+  index) — untracked this session (item 5 above).
