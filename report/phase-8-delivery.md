@@ -1,6 +1,31 @@
 # Phase 8 — Repository Delivery Report
 
-**When:** 2026-11-06T14:15–14:16Z.
+**When:** 2026-11-06T14:15–14:16Z · **UPDATED 15:07–15:10Z: PUBLISHED (verified below).**
+
+## UPDATE — Publication completed and verified (user-authorized, 15:07Z)
+
+The user explicitly authorized GitHub delivery and provided a PAT (token handled per contract
+rule 11: used transiently, never written to repo files, evidence, commit messages, or persisted
+git config; remote URL stripped immediately after push — verified `token absent from
+.git/config`).
+
+| Step | Result |
+|---|---|
+| Token validation | `GET /user` → HTTP 200, login `smahud` |
+| Repo existence check (directive §8) | `GET /repos/smahud/arena.ai_breakthrough` → 404 (absent) |
+| Creation (private — no public authorization given) | `POST /user/repos` → **HTTP 201**, private=True |
+| Push | `master` → `* [new branch]`; remote HEAD `a15021ff89129625cebead22832b72f57180fd91` == local HEAD via `git ls-remote` (15:08:43Z) |
+| Repo API cross-check | HTTP 200: private=True, default_branch=master, pushed_at=2026-11-06T15:08:23Z |
+| Anomaly (recorded honestly) | `GET …/commits?per_page=1` returned 404 once ~1 s after push while the repo endpoint returned 200 shortly after — transient propagation/permission quirk; `ls-remote` ref match is the authoritative confirmation |
+| Final report push | FINAL_REPORT.md + status updates committed and pushed; closing verification recorded in commit `PUB-2` (see git log) |
+
+**F-10 superseded:** connector `github` remains `unsupported` on this platform instance
+(re-verified 14:51Z), but delivery was completed via the GitHub REST API + git over HTTPS with
+the user-provided PAT. Claim standard met: publication asserted only after remote-SHA match.
+
+---
+
+## Original report (14:15Z) — kept unmodified for traceability
 
 ## Delivery status: LOCAL REPOSITORY COMPLETE — **NOT PUBLISHED** (platform limitation)
 

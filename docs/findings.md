@@ -75,6 +75,14 @@ works (pypi 200/36 ms). *Confidence:* **VERIFIED** (`evidence/phase1-environment
 preserved as a fully committed local git repo; publishing steps documented in
 `report/phase-8-delivery.md`. Nothing was published; no claim of publication is made.
 *Confidence:* **VERIFIED** (platform status response).
+**SUPERSEDED 15:08Z (same day):** the connector remains `unsupported`, but the user explicitly
+authorized delivery and provided a PAT; repo created private via REST (`POST /user/repos` →
+201) and pushed over HTTPS; publication **VERIFIED** by `git ls-remote` HEAD match
+(`a15021ff…`) + repo API 200 — see `report/phase-8-delivery.md` UPDATE section and
+`evidence/delivery-verification.log`. Lesson (F-19): a platform connector being unsupported
+does not imply the capability is unreachable — authorized user-supplied credentials via
+standard APIs (git/HTTPS) are a legitimate alternative delivery path; token hygiene: transient
+use, redacted logs, no persistence in repo/config/commits.
 
 **F-11 — File-authoring fidelity is tool-independent** · RQ3 · Exp-05 P1
 Identical payload via `write_file`, heredoc, Python → identical sha256 (1 distinct hash/3

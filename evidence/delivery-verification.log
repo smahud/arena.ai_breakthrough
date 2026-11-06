@@ -1,0 +1,9 @@
+=== DELIVERY VERIFICATION (contract rule 2: confirm before claiming) ===
+15:07Z  GET /user (Bearer PAT, redacted)          -> HTTP 200, login smahud
+15:07Z  GET /repos/smahud/arena.ai_breakthrough   -> HTTP 404 (absent -> creation authorized)
+15:08Z  POST /user/repos {private:true}           -> HTTP 201, private=True
+15:08Z  git push origin master                    -> * [new branch] master -> master
+15:08Z  remote set-url (token stripped)           -> token absent from .git/config: confirmed
+15:08:24Z GET /repos/.../commits?per_page=1       -> HTTP 404 (transient anomaly, recorded)
+15:08:43Z GET /repos/smahud/arena.ai_breakthrough -> HTTP 200 private=True default_branch=master pushed_at=2026-11-06T15:08:23Z
+15:08:43Z git ls-remote                           -> HEAD a15021ff89129625cebead22832b72f57180fd91 == local HEAD  [PUBLICATION VERIFIED]

@@ -6,9 +6,10 @@ inside an authorized sandbox on 2026-11-06 by the agentic system under study (fi
 methodology; see `docs/limitations.md` L-1 for the epistemic ceiling this imposes).
 
 **Status:** research complete · **9/9 experiments executed** (7 core + 2 follow-up) ·
-**44/44 tests green** · validation pipeline OK · GitHub delivery **unavailable on this
-instance** (connector `unsupported`, re-verified 14:51Z) → delivered as a fully committed local
-git repository; publishing runbook in `report/phase-8-delivery.md`.
+**44/44 tests green** · validation pipeline OK · **PUBLISHED**:
+[github.com/smahud/arena.ai_breakthrough](https://github.com/smahud/arena.ai_breakthrough)
+(private; created + pushed 2026-11-06T15:08Z via user-provided PAT, remote SHA verified —
+`report/phase-8-delivery.md`). Final report: [`FINAL_REPORT.md`](FINAL_REPORT.md).
 
 ## What's here
 
