@@ -132,8 +132,10 @@ overlap. “Pipelined” describes the observable handoff pattern, **not** a ver
 implementation. Worker count, scheduler mechanism, and whether other workloads/instances
 behave alike are **UNKNOWN**. Corrects F-01/Exp-02 interpretation. *Confidence:*
 **VERIFIED** for raw bash interval overlap and span in these two trials only; independent
-Phase-2 re-analysis: `evidence/phase2/baseline-evidence-crosscheck.log`. Non-bash batches
-remain UNKNOWN.
+Phase-2 re-analysis: `evidence/phase2/baseline-evidence-crosscheck.log`. **Phase-2
+comparison (F-20):** a different explicit-wrapper bash batch showed *all-pair overlap*;
+therefore F-16 is **not a universal scheduling rule**. The original trial's own intervals
+remain verified. Non-bash start times and cause of between-trial variation remain UNKNOWN.
 
 **F-17 — Transient faults require an explicit, bounded, off-by-default blind-retry budget** · RQ3 · Exp-09
 Deterministic-fault policy (retry only after patch, F-02) left a flaky command unrecoverable:
@@ -155,7 +157,9 @@ excluded caches. Persistence behavior of other excluded state is UNKNOWN. *Confi
 `report/phase-9-followup.md`; causal diagnosis **INFERRED**; independent reproduction
 **PENDING**. *Repro:* configure repo-local identity, start a genuinely new user session,
 attempt a commit without re-establishing excluded configuration. *Mitigation adopted:* global identity + commit-readiness
-check recommended for validation pipelines.
+check recommended for validation pipelines. A later genuine **same-chat user-turn** observation
+(F-21) directly verifies loss of one `.cache` fixture, but does not reproduce the original
+`.git/config` incident or test a separate new-chat boundary.
 
 **F-19 — Public GitHub delivery via authorized alternative path (retrospective registration)** · delivery · Phase-8 UPDATE + Phase-2 baseline
 F-10's connector-limited historical conclusion was superseded: the preserved delivery log
@@ -169,10 +173,56 @@ credentialed publication **DOCUMENTED** by `evidence/delivery-verification.log` 
 newly executed experiment. *Architectural implication:* connector support does not imply or
 preclude standard, separately authorized git/API access; no platform internals follow.
 
-**Open questions (HYPOTHESIS/UNKNOWN):** ~~H-1 all-at-once bash overlap~~ **REFUTED for
-Exp-08's conditions**; adjacent overlap and scheduler mechanism remain unresolved (F-16).
-H-2 whether planning is a distinct internal
-phase or emerges per-step from the same generative process (UNKNOWN — both architectures
-predict all observations here; see architecture-analysis §5); H-3 cross-turn constraint
-persistence (UNKNOWN, L-4); H-4 behavior under context-window pressure (UNKNOWN — session was
-short relative to limits; no compaction event was observable).
+**F-20 — Explicit-wrapper batches overlap; scheduling is not universal** · RQ2/RQ3 · Exp-10
+Four primary N=3 `multi_tool_use.parallel` bash batches (two 0.25 s, two 0.75 s) recorded
+**3/3 overlapping interval pairs each**; spans 0.2738–0.2959 s and 0.7726–0.7732 s.
+A **prospectively added, exploratory** N=4/d=1.0 s wrapper batch X1 also showed
+**6/6 overlaps**, 1.0433 s span, versus historical Exp-08 T4's 2/6 and 4.064 s
+with the *same N/d* (invocation mode and session still differ).
+Two independent file-tool completions fell inside a bash interval; one invalid file path
+failed without blocking healthy siblings. A bounded timeout returned `status=timeout` at
+~1.325 s, while its command later wrote a 2.00 s completion marker.
+*Interpretation:* call batching can exhibit broad **actual interval overlap** in the
+explicit wrapper, contrary to a universal “serial batches” rule derived from F-16.
+*Alternatives:* wrapper vs historical batch invocation envelope (not preserved),
+instance/session changes, interaction with workload, jitter or clocks; matched X1 rules
+out **N/d alone** under this wrapper, not those alternatives. Results do **not** identify
+workers or a model change. File-tool **start** remains unmeasured. *Confidence:* **VERIFIED** narrowly for
+12 primary timestamped bash calls + 4 exploratory matched calls + two file completion
+mtimes + one timeout; generic scheduling rule **REFUTED**; N/d **alone** do not force
+the old pattern in the matched wrapper control; causal difference **UNKNOWN**. *Repro:*
+`experiments/experiment-10/DESIGN.md`, `interval.py`, `analyze.py`,
+`evidence/phase2/exp10/{analysis.log,matched-control-plan.md,matched-analysis.log,dispatch-results.md,*.json}`.
+
+**F-21 — Actual user-turn checkpoint distinguishes persisted vs excluded state** · RQ4 · Exp-11
+Before a real user's “Lanjutkan” turn, an isolated fixture existed under excluded `.cache`,
+with a persisted Tier-1 patch and five file hashes. On the next turn `.cache` fixture was
+absent, while the main repo and evidence persisted; git still listed a prunable worktree.
+Recreate at `c0caa6e` outside excluded paths + apply patch → **5/5 Tier-1 hashes match**;
+reapply recorded Tier-2 edits → **2/2 prior hashes match**, focused tests pass. The
+unanticipated recovery required an observable plan change (fixture location, checkpoint
+restore). *Alternatives:* platform snapshot policy, process/workspace lifecycle, or their
+combination; no evidence of internal forgetting. *Confidence:* **VERIFIED** for this
+within-chat **turn** and these paths; *new chat* context transfer **PENDING**. *Repro:*
+`evidence/phase2/{turn-boundary-check.log,exp11-recovery.log,exp11-tier1.patch}`; next
+actual turn may recheck artifacts, but do not simulate a different chat.
+
+**F-22 — Security test exposed a baseline artifact defect and drove a narrow fix** · RQ3/RQ5 · Exp-11
+The baseline taskledger static guard used string prefix `startswith(STATIC)`; a literal
+`/../static_extra/audit.txt` fetched only a harmless fixture sentinel **HTTP 200** despite
+being outside `static/`. A focused regression failed (exit 1), then `realpath` +
+`commonpath` containment made it pass; fixture 50/50 tests, fresh-patch replay 50/50,
+and the **main repository** received only the security guard + one focused regression
+(45/45 tests and pipeline green). *Interpretation:* an independent security gate uncovered
+a test gap that ordinary functional tests missed; this is not evidence of a distinct
+security agent. *Confidence:* **VERIFIED** for sibling-path escape and corrected fixture/main
+tests; absence of every traversal variant beyond tested sibling/symlink paths **UNKNOWN**.
+*Repro:* `evidence/phase2/exp11-security-{before,red,after-and-validation}.log`,
+`tests/test_taskledger_security.py`; read only owned temporary sentinels.
+
+**Open questions (HYPOTHESIS/UNKNOWN):** H-1 as a **universal batch-scheduling rule is
+REFUTED** by contrasting F-16/F-20; why conditions differ and worker count remain UNKNOWN.
+H-2 internal planner boundaries remain UNKNOWN (H-A1/A2 equivalent here). H-3 *same-chat*
+workspace-vs-excluded-path continuity is now observed (F-21), but genuine new-chat
+constraint-resolution remains **PENDING**. H-4 compaction is **DOCUMENTED** by public help,
+yet no compaction event or context-limit pressure was verified in these experiments.

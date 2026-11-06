@@ -33,3 +33,30 @@
   (`evidence/phase2/baseline-repository-probe.log`, F-19). This new session's *write access*
   and any Phase 2 push remain UNKNOWN until independently verified. Original wording is
   preserved in `report/phase-8-delivery.md` under “Original report.”
+
+## Phase-2 update to dated limitations (original wording retained above)
+
+- **L-2 scope:** Phase-1's “one continuous session, n=1” referred to its own trials.
+  EXP-10 ran 4 primary batches with **two repeats per duration**, plus one
+  prospectively-added exploratory matched N=4/d=1 batch. EXP-11 is **one engineering
+  case**, followed by a new-worktree **artifact replay** (not an independent agent run)
+  and a real within-chat user turn. No cross-platform or multi-model sample exists.
+- **L-4 refined:** a genuine *same-chat* user-message boundary occurred during EXP-11,
+  revealing loss of one excluded `.cache` fixture and survival of its persisted patch/git
+  artifacts (F-21). Cross-**new-chat** constraint resolution, days-later continuity and
+  automatic **compaction events** are still UNKNOWN/PENDING. Public documentation of a
+  compaction feature is not an observed compaction occurrence.
+- **L-5 scope:** EXP-11's requirement change and red security regression were scripted;
+  the original static-file guard defect was independently observed through an owned
+  sibling-path probe (F-22). No claim of general security coverage or production
+  resilience follows.
+- **L-6 refined:** F-16's mostly serial pattern was scoped to its original conditions;
+  F-20 finds **all-pair overlap** in a different explicit-wrapper batch, including a
+  matched N=4/d=1 exploratory trial. The match rules out **N/d alone** as a sufficient
+  explanation under that wrapper, but invocation/session and other differences remain
+  confounded. File-tool *completion*, not start, was measured; workers/models UNKNOWN.
+- **L-7 retained:** the real “Lanjutkan” turn was not a user-originated change in task
+  goal; clarification/interrupt stress and long-horizon feedback remain untested.
+- **L-9 pending:** Phase-2 git write/push status must be updated only after an actual
+  noninteractive authorized push attempt and remote confirmation; historical Phase-8
+  publication does not authorize claiming Phase-2 delivery.

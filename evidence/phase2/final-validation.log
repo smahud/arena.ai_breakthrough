@@ -1,0 +1,41 @@
+# Phase-2 full repository audit 2026-11-06T17:38:24Z
+HEAD 9430392dece0030abb264121e94a02d13681f7d6
+# Diff whitespace
+PASS git diff --check
+# Main suite
+.............................................                            [100%]
+45 passed in 0.92s
+# Disposable-copy historical 7-gate pipeline
+pipeline_copy /home/user/arena-phase2-pipeline-dmn0b9tl
+[PASS] imports: all modules import
+[PASS] pytest: 45 passed in 0.97s
+[PASS] server_up: port 38479
+[PASS] frontend: GET / -> 200
+[PASS] post_task: POST -> 201
+[PASS] list_contains_task: GET -> 200
+[PASS] delete_task: DELETE -> 204
+RESULT: OK -> /home/user/arena-phase2-pipeline-dmn0b9tl/evidence/run-suite-result.json
+pipeline_json_steps 7 all_ok True returncode 0
+# Fixture replay worktree: patch and tests
+ M src/taskledger/README.md
+ M src/taskledger/api.py
+ M src/taskledger/server.py
+ M src/taskledger/static/index.html
+?? tests/test_taskledger_filter.py
+..................................................                       [100%]
+50 passed in 1.45s
+# Fixture final changed-file hashes match original checkpoint/patch
+src/taskledger/api.py d2e772bcbe743ca22c08717f236d413f0cf809f2298b6acac4d67a2d366aad4d d2e772bcbe743ca22c08717f236d413f0cf809f2298b6acac4d67a2d366aad4d MATCH
+src/taskledger/server.py aa2c62503e95573b958988f831c1bf8a31eb9888739c1ac0f0fa0f943487365e aa2c62503e95573b958988f831c1bf8a31eb9888739c1ac0f0fa0f943487365e MATCH
+src/taskledger/static/index.html 406f5642497ec71c742e78b618a8c97a8b0d925bfec0c6fa6718579b089de802 406f5642497ec71c742e78b618a8c97a8b0d925bfec0c6fa6718579b089de802 MATCH
+src/taskledger/README.md 69528a58a82788dcbe67515f70e03ccdccb267df9b69d70575fd7db96565c22b 69528a58a82788dcbe67515f70e03ccdccb267df9b69d70575fd7db96565c22b MATCH
+Traceback (most recent call last):
+  File "<stdin>", line 7, in <module>
+  File "<stdin>", line 6, in <lambda>
+  File "/usr/local/lib/python3.13/pathlib/_abc.py", line 625, in read_bytes
+    with self.open(mode='rb') as f:
+         ~~~~~~~~~^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/pathlib/_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/user/arena-phase2-exp11-fixture/tests/test_taskledger_filters.py'

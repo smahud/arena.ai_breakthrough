@@ -55,3 +55,24 @@ A *fingerprint is a comparison vector*, never a model identifier. For each workl
 ## Context complexity, risk limits and stop rules
 
 EXP-11 has two meaningful tiers: first a limited feature with four constraints; then a requirement change adding pending-filter semantics plus a conflicting default-behavior clause, regression/security checks and documentation. At each tier check exact constraints and artifact consistency by inspection/tests; this tests *modest structured complexity*, not context-window pressure or compaction. Stop after a representative result, bounded correction and two independent validations; if timing cannot discriminate, report UNKNOWN. No credentials or protected configuration accessed. All new experiments need raw evidence, all phase reports reside in root `report/`, and historical evidence is append-only.
+
+## Execution-status addendum (written AFTER trials; not part of preregistration)
+
+- EXP-10 **EXECUTED:** primary 12 intervals; mixed + timeout; exploratory D1 was only
+  a singleton (**no direct batch**), while prospectively added matched X1 N=4/d=1
+  produced four further intervals. `experiment-10/RESULTS.md`, F-20, raw `exp10/`.
+- EXP-11 **EXECUTED:** baseline audit worktree, documented planning, requirement
+  contradiction, failed and corrected tests, independent patch replay, and a real
+  *same-chat* user-turn fixture loss/reconstruction. The `.cache` fixture prescribed
+  above **did not survive** that turn, so the recorded patch/hash checkpoint was
+  reapplied in a persistent detached worktree; the cause and recovery are F-21.
+  A real sibling-path security gap was found and narrowly fixed in main (F-22);
+  experimental filter/UI changes remain fixture-only. `experiment-11/RESULTS.md`.
+- DOC review **EXECUTED** with retrieval timestamps and official source ledger;
+  capability matrix distinguishes product documentation from scoped observation.
+- Fingerprint snapshot `evidence/phase2/behavioral-fingerprint.json` and
+  `docs/behavioral-fingerprinting.md` make the descriptive timing/quality vector
+  auditable. `src/minagent` **UNCHANGED**; no speculative new infrastructure.
+- The originally planned **genuine new-chat** continuity steps 3–4 remain **PENDING**.
+  The observed same-chat turn is a narrower result, not a substitute; no compaction
+  event or internal model trace was observed.

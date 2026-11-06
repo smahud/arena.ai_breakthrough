@@ -26,3 +26,31 @@ Telemetry columns reflect what results actually expose (F-13); nothing here clai
 - **Selection rules adopted** (from Exp-05 matrix): servers→start_process; measurement→bash
   with pipefail; known-content files→write_file; generated content→bash/Python;
   discover→search; extract→fetch; kill→by recorded PID.
+
+## Phase-2 timing and heterogeneous tools (F-20; narrow addendum)
+
+**Vocabulary:** *batching* = bundling calls for one user-facing tool request;
+*dispatch* = actual invocation; *interval overlap* = measured inside-tool operations
+in progress at the same time; *sequential execution* = no such overlap;
+*in-process parallelism* = concurrent computation **inside** one tool or program;
+*independent workers* = distinct executing entities. Only the first three can be
+observed here; interval overlap alone does **not** identify distinct workers/models.
+
+- Historical Exp-08 N=4/8 bash batches had predominantly serial start spacing with short
+  adjacent overlaps (F-16). EXP-10's four N=3 **explicit wrapper** batches had 3/3
+  pairwise bash interval overlaps each; the prospectively added exploratory matched
+  N=4/d=1 control also had 6/6, unlike old T4 2/6. These are **different measured
+  conditions**. The invocation/session cause is UNKNOWN, not evidence of a policy/model
+  switch. See `experiment-10/RESULTS.md` for raw timestamps, spans and caveats.
+- Mixed bash/file invocation: two `write_file` files' mtimes fell *inside* one bash
+  interval; a third invalid sibling write failed harmlessly, while healthy writes and
+  bash succeeded. **Completion time only** for file tools; file start and runtime remain
+  UNKNOWN. The dependent `read_file` was ordered *after* the independent batch by the
+  experimenter, not by verified platform dependency detection.
+- The bounded `bash(timeout=1)` returned `timeout`/null exit after ~1.325 s but a
+  later sentinel established the command finished ~2.00 s after its start; a healthy
+  sibling write succeeded. This is one case of **stop waiting**, not a universal kill
+  guarantee, independent background-process semantics or retry policy.
+- D1 attempted an exploratory direct-control but **submitted only a singleton**:
+  no 3-call direct batch was observed. Do not assert that a direct multi-call mode is
+  impossible; do not compare D1 span to real batches.

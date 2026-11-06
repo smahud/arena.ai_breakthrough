@@ -32,3 +32,23 @@ Within-session only. How context behaves near window limits, whether the platfor
 summarizes older turns, and how constraints survive across separate user messages/days are
 **UNKNOWN** (H-3/H-4, limitations L-4) — no compaction event was observable in this session's
 telemetry, and none can be induced on demand.
+
+## Phase-2 addendum (supersedes only the final “separate user messages” clause)
+
+**Original statement:** “Within-session only ... how constraints survive across separate
+user messages/days UNKNOWN.” **Evidence:** EXP-11 was interrupted by an actual user
+“Lanjutkan” message; `evidence/phase2/turn-boundary-check.log` records the `.cache`
+fixture absent but the main repo and persisted patch/evidence present; reapplication
+matched 5/5 earlier file hashes and 2/2 recorded Tier-2 hashes
+(`exp11-recovery.log`). **Reason for correction:** a real within-chat user-turn boundary
+was subsequently observed. **Updated statement:** state **in persisted artifacts**
+survived this *same chat* turn and enabled precise reconstruction; one excluded `.cache`
+path did not. This verifies an externalized-state recovery strategy, not a model's
+unassisted memory or cross-chat constraint survival. A genuine **new-chat** continuity
+check remains PENDING; a real context compaction event is **UNKNOWN**. Public
+[token-limit documentation](https://help.arena.ai/articles/3975292349-arena-troubleshooting-session-token-limits)
+describes Agent Mode compaction (**DOCUMENTED**, not a trace of this chat).
+
+**Affected documents:** this file's original limits paragraph, `limitations.md` L-4,
+`findings.md` F-18/F-21, `architecture-analysis.md` §6–7, and Phase-2 reports. Phase-1
+context observations and original evidence are retained, not rewritten as a new-chat test.

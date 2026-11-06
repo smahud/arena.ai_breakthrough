@@ -85,3 +85,23 @@ inspectability, not because A2 was evidenced over A1.
 - Cross-message constraint tests over days (H-3, L-4).
 - Context-pressure tests: force long transcripts, watch for compaction artifacts (H-4).
 - Deliberate mid-batch contradiction to test arbitration ordering at scale.
+
+## 7. Phase-2 reassessment (2026-11-06 UTC; preserves historical §5/§6)
+
+| Externally new | Architectural effect | Remaining alternatives |
+|---|---|---|
+| Exp-10 four explicit-wrapper N=3 batches all-pair overlap, plus exploratory N=4/d=1 X1 all 6/6 vs historical Exp-08 T4 2/6 | §5's “mostly serial” was an **Exp-08-specific** observation, not a global architecture feature. All A1–A3 can yield *both* timing patterns through external dispatch conditions. | Invocation envelope, session/context/environment, policy, latency and clock assumptions not isolated. **No verified worker count.** |
+| Exp-11 written task map, scripted contradictory requirement, red→green functional/security tests | Adds observed decomposition, constraint arbitration and revision to §2 (F-21/F-22). A1's one policy, A2's stage split and A3's specialists all predict these artifacts. | A written plan is not internal-planner telemetry; no model/specialist identity inferred. |
+| Real user-turn checkpoint: excluded `.cache` fixture absent, main repo/evidence present; hashes recovered from persisted patch | Externalized state has different *persistence classes*. Plan adaptation to that loss is observable. | Does not prove model memory loss or new-chat constraint continuity; both still UNKNOWN/PENDING. |
+| Official Agent Mode/Coding/Connectors/Max documentation | Product-wide functional capabilities and opt-in workflow **DOCUMENTED** (`public-capabilities.md`). | Documented router/orchestrator features cannot identify this run's routing, planner, agent count or hidden boundaries. |
+
+**Discriminative judgment:** F-20 eliminates a universal serial-bash rule and its X1 control
+rules out **N/d alone** in this wrapper, but no remaining evidence prefers A1, A2 or A3.
+F-21 verifies artifact-backed recovery across an actual *same-chat* user turn, not a fresh
+chat/compaction event. F-22 supports a narrow security-test seam, not a security specialist.
+The reference architecture is unchanged: it still reproduces external functional patterns,
+not a reverse-engineered platform implementation. See
+[`hypothesis-evaluation.md`](hypothesis-evaluation.md) for explicit predictions/null results
+and the minimum next authorized comparison. The §6 suggestion to force context pressure
+remains **unexecuted** (large transcript/compaction not induced just to obtain telemetry);
+a genuine new-chat boundary cannot be manufactured inside this conversation.

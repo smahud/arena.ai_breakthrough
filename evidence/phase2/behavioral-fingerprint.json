@@ -1,0 +1,144 @@
+{
+  "baseline_commit": "79412fd52b2db8c23855a35aec867e9a27384fc4",
+  "descriptive_summary": {
+    "all_pair_overlap_trials": 4,
+    "confidence_interval": null,
+    "long_span_range_s": [
+      0.7726,
+      0.7732
+    ],
+    "reason_no_ci": "n=2, same session; no sampling/randomization assumptions",
+    "replicates_per_length": 2,
+    "short_span_range_s": [
+      0.2738,
+      0.2959
+    ]
+  },
+  "design_commit": "9430392dece0030abb264121e94a02d13681f7d6",
+  "exploratory_matched_control": {
+    "historical_T4_overlap_pairs": 2,
+    "historical_T4_span_s": 4.064,
+    "id": "X1",
+    "interpretation": "N/d alone insufficient under matched explicit wrapper; historical invocation/session confounded",
+    "n": 4,
+    "overlapping_pairs": 6,
+    "possible_pairs": 6,
+    "raw_sha256_concat_index_order": "4ed022dc949ae297b33020462e89b7309646fc75ff710a76f085780ad8cfd36a",
+    "registered": "evidence/phase2/exp10/matched-control-plan.md",
+    "sleep_s": 1.0,
+    "source_files": [
+      "evidence/phase2/exp10/X1-0.json",
+      "evidence/phase2/exp10/X1-1.json",
+      "evidence/phase2/exp10/X1-2.json",
+      "evidence/phase2/exp10/X1-3.json"
+    ],
+    "span_s": 1.0433,
+    "start_order": [
+      0,
+      3,
+      1,
+      2
+    ]
+  },
+  "heterogeneous_case": {
+    "count_boundary": "tests and validation actions have different denominators; not agent-run repetitions",
+    "fixture_final_tests_passed": 50,
+    "independent_patch_replay_tests_passed": 50,
+    "logged_validation_actions": 19,
+    "main_security_remediation_tests_passed": 45,
+    "real_new_chat_sessions_tested": 0,
+    "real_new_user_turns_observed": 1,
+    "runs": 1,
+    "scripted_requirement_change_events": 1,
+    "source": "evidence/phase2/exp11-events.md and experiment-11/RESULTS.md",
+    "tier1_tests_passed": 47,
+    "unexpected_fixture_location_replan_events": 1
+  },
+  "schema": "phase2.behavioral-fingerprint.v1",
+  "timing_raw_sha256_concat_trial_index_order": "c4832186c7972fdf477dc8921b0965c65fe13631285b722a2fb35e19df3e0ec9",
+  "timing_trials": [
+    {
+      "id": "S1",
+      "n": 3,
+      "overlapping_pairs": 3,
+      "possible_pairs": 3,
+      "sleep_s": 0.25,
+      "source_files": [
+        "evidence/phase2/exp10/S1-0.json",
+        "evidence/phase2/exp10/S1-1.json",
+        "evidence/phase2/exp10/S1-2.json"
+      ],
+      "span_s": 0.2959,
+      "start_order": [
+        0,
+        2,
+        1
+      ]
+    },
+    {
+      "id": "S2",
+      "n": 3,
+      "overlapping_pairs": 3,
+      "possible_pairs": 3,
+      "sleep_s": 0.25,
+      "source_files": [
+        "evidence/phase2/exp10/S2-0.json",
+        "evidence/phase2/exp10/S2-1.json",
+        "evidence/phase2/exp10/S2-2.json"
+      ],
+      "span_s": 0.2738,
+      "start_order": [
+        0,
+        2,
+        1
+      ]
+    },
+    {
+      "id": "L1",
+      "n": 3,
+      "overlapping_pairs": 3,
+      "possible_pairs": 3,
+      "sleep_s": 0.75,
+      "source_files": [
+        "evidence/phase2/exp10/L1-0.json",
+        "evidence/phase2/exp10/L1-1.json",
+        "evidence/phase2/exp10/L1-2.json"
+      ],
+      "span_s": 0.7726,
+      "start_order": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "id": "L2",
+      "n": 3,
+      "overlapping_pairs": 3,
+      "possible_pairs": 3,
+      "sleep_s": 0.75,
+      "source_files": [
+        "evidence/phase2/exp10/L2-0.json",
+        "evidence/phase2/exp10/L2-1.json",
+        "evidence/phase2/exp10/L2-2.json"
+      ],
+      "span_s": 0.7732,
+      "start_order": [
+        0,
+        1,
+        2
+      ]
+    }
+  ],
+  "tool_boundaries": {
+    "compaction_event": "UNKNOWN",
+    "mixed_batch_failed_file_writes": 1,
+    "mixed_batch_healthy_file_writes": 2,
+    "mixed_file_completions_during_bash": 2,
+    "model_identity": "UNKNOWN",
+    "nonbash_start_times": "UNKNOWN",
+    "timeout_calls": 1,
+    "timeout_later_completed": 1,
+    "worker_count": "UNKNOWN"
+  }
+}

@@ -6,33 +6,42 @@ inside an authorized sandbox on 2026-11-06 by the agentic system under study (fi
 methodology; see `docs/limitations.md` L-1 for the epistemic ceiling this imposes).
 
 **Historical Phase-1/follow-up baseline:** **9/9 experiments executed** (7 core + 2 follow-up) ·
-**44/44 tests green** · validation pipeline OK. **Phase 2 in progress.** **PUBLISHED — PUBLIC**:
+**44/44 tests green** · validation pipeline OK. **Phase 2:** EXP-10/11 executed,
+main repository **45/45** tests green after one security regression, pipeline **7/7**;
+experimental fixture **50/50** tests green in an independently replayed worktree.
+The **historical baseline is PUBLISHED — PUBLIC**:
 [github.com/smahud/arena.ai_breakthrough](https://github.com/smahud/arena.ai_breakthrough)
 (created private 15:08Z; public since 16:03Z on explicit user authorization, anonymously
-verified; full record in `report/phase-8-delivery.md`). Final report:
-[`FINAL_REPORT.md`](FINAL_REPORT.md).
+verified; full record in `report/phase-8-delivery.md`). **Phase-2 publication status is
+separate and must be verified after commit/push.** Historical report:
+[`FINAL_REPORT.md`](FINAL_REPORT.md); Phase-2 execution reports:
+[`report/phase2-experiment-results.md`](report/phase2-experiment-results.md),
+[`report/phase2-behavioral-analysis.md`](report/phase2-behavioral-analysis.md).
 
 ## What's here
 
 ```
 CONTRACT.md               12 binding rules (written before any implementation)
-docs/                     findings catalog (F-01…F-19 at Phase-2 baseline), architecture,
-                          orchestration, lifecycle, tool behavior, context management, limitations
-experiments/01…09         DESIGN.md (pre-registered criteria) + RESULTS.md per experiment
-evidence/                 raw logs: timestamps, exit codes, hashes, diffstats, verbatim errors
-benchmarks/               run_suite.py validation pipeline + EXP-02 workstreams
-reference-architecture/   ARCHITECTURE.md + JUSTIFICATIONS.md (every component evidence-traced)
-src/                      taskledger (EXP-01/06 app), semverlite (EXP-07), minagent (reference impl)
-tests/                    44 tests at Phase-2 baseline (41 at historical Phase 7 + 3 Exp-09)
-report/                   one report per execution phase + final research summary
+docs/                     findings F-01…F-22, architecture, public-capability matrix,
+                          hypothesis evaluation, behavioral fingerprinting and limitations
+experiments/01…09         historical DESIGN.md + RESULTS.md per experiment
+experiments/experiment-10/11  Phase-2 designs/results, timing scripts and fixture replay
+evidence/                 raw logs: timestamps, exits, hashes, diffs, red/green tests
+benchmarks/               run_suite.py historical 7-gate validation pipeline
+reference-architecture/   ARCHITECTURE.md + JUSTIFICATIONS.md (functional, evidence-traced)
+src/                      taskledger (narrow Phase-2 security fix), semverlite, unchanged minagent
+tests/                    45 in main (historical 44 + 1 security regression); fixture has 50
+report/                   phase reports; original FINAL_REPORT.md preserved as dated history
 ```
 
 ## Headline results (details & classifications in `docs/findings.md`)
 
-1. **Independent tool calls can be invoked as one batch; timed bash execution was mostly
-   serial, with short adjacent interval overlap** (Exp-08: T8/T4 span scaling 1.74, not ~1.0;
-   7/28 interval pairs overlap in T8). Batching reduces round-trips but does not establish
-   independent workers or all-at-once runtime concurrency (F-16/F-15, scoped VERIFIED).
+1. **Batches are not governed by one universal timing pattern.** Historical Exp-08
+   bash intervals were mostly serial with short adjacent overlap (T8 7/28 pairs);
+   Phase-2 EXP-10's explicit wrapper showed all-pair overlap (N=3: 3/3 each;
+   exploratory matched N=4/d=1: 6/6 vs old T4 2/6). The different invocation
+   mode/session remains confounded; neither independent workers nor models follow
+   from interval overlap (F-16/F-20, scoped VERIFIED).
 2. **Recovery loop shape** is regular: detect → localize from error text → minimal (1-line)
    patch → re-verify, closing in one extra step; identical for injected and *organic* failures
    (F-02, F-14 — VERIFIED, n=4).
@@ -42,17 +51,23 @@ report/                   one report per execution phase + final research summar
 4. **A storage seam supported a localized change**: the SQLite adaptation touched two
    source files and zero pre-existing API tests; restart durability was verified against
    SIGKILL. Causal superiority over other designs remains INFERRED (F-05).
-5. **Early written constraints survive the whole session and beat contradictory late
-   requirements** (F-06 — VERIFIED within-session; cross-turn UNKNOWN).
-6. **Internal architecture is not identifiable from behavior**: three alternative internal
-   architectures predict every observation here; none is privileged (`docs/architecture-analysis.md`
-   §5 — UNKNOWN by construction; no models/agents inferred from style or speed).
+5. **Written constraints and checkpoints enable visible continuity.** Scripted Tier-2
+   conflict preserved the default API contract; across a genuine **same-chat user turn**
+   a lost excluded fixture was restored from saved patch/hashes. A **new-chat** continuity
+   test remains PENDING; compaction was not observed (F-06/F-21).
+6. **Security verification found a real baseline defect.** An owned sibling static path
+   returned 200 until a red test and `realpath`/`commonpath` correction; main has only
+   that narrow fix (45/45 tests), while optional filter/UI work stays in the fixture
+   (F-22). No protected files were accessed.
+7. **Internal architecture remains unidentifiable:** unified, staged and specialist
+   alternatives predict all these exterior behaviors; no particular model, worker count
+   or hidden agent can be inferred from speed/style (`docs/hypothesis-evaluation.md`).
 
 ## Run it
 
 ```bash
 python3 benchmarks/run_suite.py          # full validation pipeline (needs pytest)
-python3 -m pytest -q tests/              # 44 tests at Phase-2 baseline
+python3 -m pytest -q tests/              # 45 tests in main after Phase-2 security regression
 cd src && python3 -m taskledger.server 8000   # the EXP-01/06 app (TASKLEDGER_DB=… for SQLite)
 ```
 

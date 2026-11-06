@@ -1,0 +1,16 @@
+# Phase-2 verifier correction 2026-11-06T17:38:40Z
+First verifier (final-validation.log) assumed plural tests/test_taskledger_filters.py; actual patch file is singular test_taskledger_filter.py. First 45-test main suite and 7-gate pipeline and 50-test fixture suite PASSED; only audit harness path lookup failed. Prior log retained.
+# Fixture final changed-file hashes match original checkpoint/patch
+src/taskledger/api.py d2e772bcbe743ca22c08717f236d413f0cf809f2298b6acac4d67a2d366aad4d d2e772bcbe743ca22c08717f236d413f0cf809f2298b6acac4d67a2d366aad4d MATCH
+src/taskledger/server.py aa2c62503e95573b958988f831c1bf8a31eb9888739c1ac0f0fa0f943487365e aa2c62503e95573b958988f831c1bf8a31eb9888739c1ac0f0fa0f943487365e MATCH
+src/taskledger/static/index.html 406f5642497ec71c742e78b618a8c97a8b0d925bfec0c6fa6718579b089de802 406f5642497ec71c742e78b618a8c97a8b0d925bfec0c6fa6718579b089de802 MATCH
+src/taskledger/README.md 69528a58a82788dcbe67515f70e03ccdccb267df9b69d70575fd7db96565c22b 69528a58a82788dcbe67515f70e03ccdccb267df9b69d70575fd7db96565c22b MATCH
+tests/test_taskledger_filter.py c172564d5f0b75c646f90f09b6ee38099762c265f9910a848c2b87c7833b3188 c172564d5f0b75c646f90f09b6ee38099762c265f9910a848c2b87c7833b3188 MATCH
+# Fingerprint source digest and values
+four-primary + one-matched fingerprint source/values validated
+# Local Markdown relative links for touched/new docs and reports
+checked 20 markdown files; broken_local_links []
+# Main minagent untouched and optional fixture filter absent
+main source lacks fixture-only filter/UI; minagent git status clean
+# Done
+2026-11-06T17:38:40Z
