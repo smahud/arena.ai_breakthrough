@@ -3,8 +3,9 @@
 **Autonomous Agentic Systems Research & Behavioral Architecture Reconstruction**
 Executed: 2026-11-06, 13:52–15:08 UTC (two sessions) · Actor: agentic system under study
 (first-person methodology; epistemic ceiling documented in `docs/limitations.md` L-1)
-Delivery: **PUBLISHED** — `https://github.com/smahud/arena.ai_breakthrough` (private),
-verified via `git ls-remote` HEAD match + repo API 200 at 15:08:43Z.
+Delivery: **PUBLISHED PUBLIC** — `https://github.com/smahud/arena.ai_breakthrough`
+(created private 15:08Z; made public 16:03Z on explicit user authorization; verified via
+`git ls-remote` HEAD match, repo API 200, and anonymous no-token access 200).
 
 ---
 
@@ -85,7 +86,9 @@ the same loop shape it encodes.
 - User-provided PAT validated 15:07Z (login `smahud`; token used transiently, never stored in
   repo files, evidence, commit messages, or persisted git config — stripped post-push).
 - Repo created **private** via `POST /user/repos` → HTTP 201 (directive §8 default; no public
-  authorization given).
+  authorization given at that time). **Made PUBLIC 16:03:14Z on explicit user request** —
+  pre-publication secret scan clean; `PATCH {"private":false}` → 200; anonymous API + web
+  access → 200 (proof without token).
 - Push `master` → remote HEAD `a15021ff8912…` == local HEAD (`git ls-remote`, 15:08:43Z);
   repo API: private=True, default_branch=master, pushed_at=15:08:23Z.
 - Transient anomaly honestly recorded: `GET …/commits` returned 404 once ~1 s post-push while

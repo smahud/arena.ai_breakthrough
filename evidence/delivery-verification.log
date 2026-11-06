@@ -8,3 +8,8 @@
 15:08:43Z GET /repos/smahud/arena.ai_breakthrough -> HTTP 200 private=True default_branch=master pushed_at=2026-11-06T15:08:23Z
 15:08:43Z git ls-remote                           -> HEAD a15021ff89129625cebead22832b72f57180fd91 == local HEAD  [PUBLICATION VERIFIED]
 PUB-2 VERIFIED
+=== VISIBILITY CHANGE -> PUBLIC (explicit user authorization) ===
+16:02Z  pre-publication secret scan (tracked files)   -> clean (no credential patterns; exact-token occurrences: 0)
+16:03Z  PATCH /repos/smahud/arena.ai_breakthrough     -> HTTP 200 {"private":false} -> visibility=public
+16:03:14Z anonymous GET api.github.com/repos/...      -> HTTP 200 (no token used)   [PUBLIC VERIFIED]
+16:03:14Z anonymous GET github.com/smahud/arena.ai_breakthrough -> HTTP 200

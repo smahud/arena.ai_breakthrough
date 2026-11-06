@@ -18,6 +18,7 @@ git config; remote URL stripped immediately after push — verified `token absen
 | Repo API cross-check | HTTP 200: private=True, default_branch=master, pushed_at=2026-11-06T15:08:23Z |
 | Anomaly (recorded honestly) | `GET …/commits?per_page=1` returned 404 once ~1 s after push while the repo endpoint returned 200 shortly after — transient propagation/permission quirk; `ls-remote` ref match is the authoritative confirmation |
 | Final report push | FINAL_REPORT.md + status updates committed and pushed; closing verification recorded in commit `PUB-2` (see git log) |
+| **Visibility → PUBLIC (user request, 16:03Z)** | Pre-publication secret scan clean (no credential patterns, 0 exact-token occurrences in tracked files) → `PATCH /repos/... {"private":false}` → **HTTP 200, visibility=public** → verified anonymously (NO token): API `GET /repos/smahud/arena.ai_breakthrough` → 200 and `https://github.com/smahud/arena.ai_breakthrough` → 200 at 16:03:14Z. Directive §8 condition satisfied: user explicitly authorized public publication. Record: `evidence/delivery-verification.log`, commit `PUB-4`. |
 
 **F-10 superseded:** connector `github` remains `unsupported` on this platform instance
 (re-verified 14:51Z), but delivery was completed via the GitHub REST API + git over HTTPS with
