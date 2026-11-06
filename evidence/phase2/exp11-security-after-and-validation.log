@@ -1,0 +1,31 @@
+UTC 2026-11-06T17:29:51Z
+RUN: same security regression test after narrow realpath/commonpath correction
+.                                                                        [100%]
+1 passed in 0.54s
+SECURITY_GREEN_EXIT=0
+RUN: all fixture tests (historical 44 + focused additions)
+..................................................                       [100%]
+50 passed in 1.47s
+FULL_EXIT=0
+RUN: existing pipeline on derived isolated copy, preserving old evidence JSON
+[PASS] imports: all modules import
+[PASS] pytest: 50 passed in 1.50s
+[PASS] server_up: port 39029
+[PASS] frontend: GET / -> 200
+[PASS] post_task: POST -> 201
+[PASS] list_contains_task: GET -> 200
+[PASS] delete_task: DELETE -> 204
+RESULT: OK -> /home/user/.cache/arena-phase2-exp11-final-check/evidence/run-suite-result.json
+PIPELINE_EXIT=0
+Fixture diff --check / summary:
+DIFF_CHECK_EXIT=0
+ src/taskledger/README.md         |  5 ++++-
+ src/taskledger/api.py            | 13 ++++++++++++-
+ src/taskledger/server.py         |  7 ++++---
+ src/taskledger/static/index.html |  5 ++++-
+ 4 files changed, 24 insertions(+), 6 deletions(-)
+ M src/taskledger/README.md
+ M src/taskledger/api.py
+ M src/taskledger/server.py
+ M src/taskledger/static/index.html
+?? tests/test_taskledger_filter.py

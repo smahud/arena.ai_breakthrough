@@ -1,0 +1,21 @@
+UTC=2026-11-06T16:22:39Z
+fixture_head=c0caa6efbe8128d89abf066815340c8c02afe2bc
+current baseline main plan commit=9430392dece0030abb264121e94a02d13681f7d6
+Tier1 changed-file SHA256:
+79845b174d5b7e41b48510650059eb0af140828a4475d4c18cc13732e4bab2d0  src/taskledger/api.py
+2e96911939019b5fba299a7656f7477ff18d240a9d6c3aa851fff0b19ff02a74  src/taskledger/server.py
+406f5642497ec71c742e78b618a8c97a8b0d925bfec0c6fa6718579b089de802  src/taskledger/static/index.html
+2ae8de5a5735cdfca6d60b2aad190b6161787a59accf12f78194cd459336c220  src/taskledger/README.md
+fcd64463d8460982abeb5060fc317e3b57fa1ceca9b10e752ad9b535aaf9aa3f  tests/test_taskledger_filter.py
+Tier1 fixture git diff --stat (tracked), untracked:
+ src/taskledger/README.md         | 3 ++-
+ src/taskledger/api.py            | 9 ++++++++-
+ src/taskledger/server.py         | 2 +-
+ src/taskledger/static/index.html | 5 ++++-
+ 4 files changed, 15 insertions(+), 4 deletions(-)
+ M src/taskledger/README.md
+ M src/taskledger/api.py
+ M src/taskledger/server.py
+ M src/taskledger/static/index.html
+?? tests/test_taskledger_filter.py
+Tier1 validation source: evidence/phase2/exp11-tier1.log: focused 3/3, full 47/47, pipeline 7/7, all exits 0.

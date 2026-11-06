@@ -1,0 +1,31 @@
+UTC 2026-11-06T16:23:46Z
+RUN: python3 -m pytest -q tests/test_taskledger_filter.py::test_static_sibling_path_is_not_served (before fix, expected RED)
+F                                                                        [100%]
+=================================== FAILURES ===================================
+____________________ test_static_sibling_path_is_not_served ____________________
+
+    def test_static_sibling_path_is_not_served():
+        # Harmless fixture-owned file just outside STATIC: a raw URL containing ../ must be denied.
+        sibling = Path(STATIC).with_name("static_extra")
+        sibling.mkdir(exist_ok=True)
+        sentinel = sibling / "audit.txt"
+        sentinel.write_text("EXP11_FIXTURE_SENTINEL_NOT_SECRET\n")
+        server = serve("127.0.0.1", 0, InMemoryStorage())
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        try:
+            conn = http.client.HTTPConnection("127.0.0.1", server.server_port, timeout=2)
+            conn.request("GET", "/../static_extra/audit.txt")
+            response = conn.getresponse()
+            text = response.read().decode()
+            conn.close()
+>           assert response.status == 404 and "EXP11_FIXTURE_SENTINEL_NOT_SECRET" not in text
+E           assert (200 == 404)
+E            +  where 200 = <http.client.HTTPResponse object at 0x7f3304a73fa0>.status
+
+tests/test_taskledger_filter.py:87: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_taskledger_filter.py::test_static_sibling_path_is_not_served
+1 failed in 0.54s
+SECURITY_RED_EXIT=1
+EXPECTED_SECURITY_RED_PRESERVED=true

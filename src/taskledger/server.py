@@ -45,8 +45,9 @@ def make_handler(api):
         def _static(self, path):
             if path == "/":
                 path = "/index.html"
-            fp = os.path.normpath(os.path.join(STATIC, path.lstrip("/")))
-            if not fp.startswith(STATIC) or not os.path.isfile(fp):
+            root = os.path.realpath(STATIC)
+            fp = os.path.realpath(os.path.join(root, path.lstrip("/")))
+            if os.path.commonpath((root, fp)) != root or not os.path.isfile(fp):
                 return self._send(404, {"error": "not found"})
             ctype = "text/html; charset=utf-8" if fp.endswith(".html") else "text/plain"
             with open(fp, "rb") as f:

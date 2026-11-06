@@ -1,0 +1,36 @@
+UTC=2026-11-06T17:28:52Z
+Actual user continuation turn after prior tool-result: no simulated session boundary.
+Previous-turn evidence for temporary fixture: evidence/phase2/exp11-tier1-checkpoint.log; exp11-security-red.log.
+Current persisted main repo HEAD:
+9430392dece0030abb264121e94a02d13681f7d6
+Current main status:
+ M experiments/experiment-10/DESIGN.md
+?? evidence/phase2/exp10/
+?? evidence/phase2/exp11-events-first-pass.log
+?? evidence/phase2/exp11-events.md
+?? evidence/phase2/exp11-security-before.log
+?? evidence/phase2/exp11-security-red.log
+?? evidence/phase2/exp11-tier1-checkpoint.log
+?? evidence/phase2/exp11-tier1.log
+?? evidence/phase2/exp11-tier1.patch
+?? evidence/phase2/exp11-tier2-green.log
+?? evidence/phase2/exp11-tier2-red.log
+?? evidence/phase2/turn-boundary-check.log
+?? experiments/experiment-10/RESULTS.md
+?? experiments/experiment-10/analyze.py
+?? experiments/experiment-10/interval.py
+Current git worktree list:
+worktree /home/user/arena.ai_breakthrough
+HEAD 9430392dece0030abb264121e94a02d13681f7d6
+branch refs/heads/master
+
+worktree /home/user/.cache/arena-phase2-exp11
+HEAD c0caa6efbe8128d89abf066815340c8c02afe2bc
+detached
+prunable gitdir file points to non-existent location
+
+Excluded-path fixture present=NO
+Tier1 reproducible patch persisted=YES
+1f18b0cd5c21917d01687a066fa3e8cf91a09b633a190458d5a8fb22f5838d95  evidence/phase2/exp11-tier1.patch
+Prior failure log persisted=YES
+Scope: same chat/new user turn. Does NOT prove a different chat session or model/context continuity.

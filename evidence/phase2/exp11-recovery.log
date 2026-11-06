@@ -1,0 +1,36 @@
+UTC 2026-11-06T17:29:04Z
+RUN: git worktree prune (stale .cache registration points to missing path)
+RUN: git worktree add --detach persistent fixture at saved audit commit
+Preparing worktree (detached HEAD c0caa6e)
+HEAD is now at c0caa6e Phase 2.1: audit live baseline and reconcile historical research claims
+RUN: git apply --check && git apply saved Tier1 patch
+Recovered Tier1 file hashes:
+79845b174d5b7e41b48510650059eb0af140828a4475d4c18cc13732e4bab2d0  src/taskledger/api.py
+2e96911939019b5fba299a7656f7477ff18d240a9d6c3aa851fff0b19ff02a74  src/taskledger/server.py
+406f5642497ec71c742e78b618a8c97a8b0d925bfec0c6fa6718579b089de802  src/taskledger/static/index.html
+2ae8de5a5735cdfca6d60b2aad190b6161787a59accf12f78194cd459336c220  src/taskledger/README.md
+fcd64463d8460982abeb5060fc317e3b57fa1ceca9b10e752ad9b535aaf9aa3f  tests/test_taskledger_filter.py
+Expected Tier1 hashes from saved checkpoint:
+Tier1 changed-file SHA256:
+79845b174d5b7e41b48510650059eb0af140828a4475d4c18cc13732e4bab2d0  src/taskledger/api.py
+2e96911939019b5fba299a7656f7477ff18d240a9d6c3aa851fff0b19ff02a74  src/taskledger/server.py
+406f5642497ec71c742e78b618a8c97a8b0d925bfec0c6fa6718579b089de802  src/taskledger/static/index.html
+2ae8de5a5735cdfca6d60b2aad190b6161787a59accf12f78194cd459336c220  src/taskledger/README.md
+fcd64463d8460982abeb5060fc317e3b57fa1ceca9b10e752ad9b535aaf9aa3f  tests/test_taskledger_filter.py
+HASH_MATCH_CHECK:
+src/taskledger/api.py MATCH
+src/taskledger/server.py MATCH
+src/taskledger/static/index.html MATCH
+src/taskledger/README.md MATCH
+tests/test_taskledger_filter.py MATCH
+Recovery uses persisted patch; Tier2 post-checkpoint changes still need explicit reconstruction, not assumed.
+UTC 2026-11-06T17:29:24Z
+Reconstructed Tier2 pre-security-test hashes vs recorded prior turn exp11-tier2-green.log:
+d2e772bcbe743ca22c08717f236d413f0cf809f2298b6acac4d67a2d366aad4d  src/taskledger/api.py
+cbce25fb0178708c733e35d2dbe2457b26aa2840de058b0a82c10d89effe7da2  tests/test_taskledger_filter.py
+src/taskledger/api.py MATCH
+tests/test_taskledger_filter.py MATCH
+RUN: focused Tier2 tests in reconstructed persistent fixture (not re-running earlier historical experiments)
+.....                                                                    [100%]
+5 passed in 0.54s
+RECONSTRUCTED_TIER2_EXIT=0

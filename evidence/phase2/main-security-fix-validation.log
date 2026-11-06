@@ -1,0 +1,23 @@
+UTC 2026-11-06T17:31:17Z
+RUN: python3 -m pytest -q tests/test_taskledger_security.py (real main repository)
+.                                                                        [100%]
+1 passed in 0.54s
+SECURITY_EXIT=0
+RUN: python3 -m pytest -q tests/ (real main repository)
+.............................................                            [100%]
+45 passed in 0.98s
+MAIN_FULL_EXIT=0
+RUN: existing pipeline in clean copy (historic evidence JSON in main not overwritten)
+[PASS] imports: all modules import
+[PASS] pytest: 45 passed in 0.95s
+[PASS] server_up: port 51905
+[PASS] frontend: GET / -> 200
+[PASS] post_task: POST -> 201
+[PASS] list_contains_task: GET -> 200
+[PASS] delete_task: DELETE -> 204
+RESULT: OK -> /home/user/.cache/arena-phase2-main-security-check/evidence/run-suite-result.json
+MAIN_PIPELINE_EXIT=0
+RUN: git diff --check; status src/tests:
+DIFF_CHECK_EXIT=0
+ M src/taskledger/server.py
+?? tests/test_taskledger_security.py

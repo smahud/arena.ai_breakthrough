@@ -1,0 +1,28 @@
+UTC 2026-11-06T16:22:24Z
+RUN: python3 -m pytest -q tests/test_taskledger_filter.py (fixture, Tier1)
+...                                                                      [100%]
+3 passed in 0.53s
+FOCUSED_EXIT=0
+RUN: python3 -m pytest -q tests/ (fixture, includes 44 historical tests)
+...............................................                          [100%]
+47 passed in 0.93s
+FULL_EXIT=0
+RUN: pipeline on derived clean copy, to avoid replacing historical run-suite-result.json even in fixture
+[PASS] imports: all modules import
+[PASS] pytest: 47 passed in 0.96s
+[PASS] server_up: port 45151
+[PASS] frontend: GET / -> 200
+[PASS] post_task: POST -> 201
+[PASS] list_contains_task: GET -> 200
+[PASS] delete_task: DELETE -> 204
+RESULT: OK -> /home/user/.cache/arena-phase2-exp11-tier1-check/evidence/run-suite-result.json
+PIPELINE_EXIT=0
+RUN: git diff --stat and status fixture
+ src/taskledger/api.py            | 9 ++++++++-
+ src/taskledger/server.py         | 2 +-
+ src/taskledger/static/index.html | 5 ++++-
+ 3 files changed, 13 insertions(+), 3 deletions(-)
+ M src/taskledger/api.py
+ M src/taskledger/server.py
+ M src/taskledger/static/index.html
+?? tests/test_taskledger_filter.py

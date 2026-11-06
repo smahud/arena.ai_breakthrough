@@ -1,0 +1,29 @@
+UTC 2026-11-06T17:30:45Z
+RUN: independent detached git worktree from audit commit + git apply --check / git apply preserved final patch
+Preparing worktree (detached HEAD c0caa6e)
+HEAD is now at c0caa6e Phase 2.1: audit live baseline and reconcile historical research claims
+APPLY_CHECK_EXIT=0
+APPLY_EXIT=0
+RUN: focused security test + complete tests in second worktree
+.                                                                        [100%]
+1 passed in 0.55s
+SECURITY_EXIT=0
+..................................................                       [100%]
+50 passed in 1.51s
+FULL_EXIT=0
+RUN: pipeline on fresh derived copy so tracked historical result stays unchanged
+[PASS] imports: all modules import
+[PASS] pytest: 50 passed in 1.57s
+[PASS] server_up: port 36285
+[PASS] frontend: GET / -> 200
+[PASS] post_task: POST -> 201
+[PASS] list_contains_task: GET -> 200
+[PASS] delete_task: DELETE -> 204
+RESULT: OK -> /home/user/.cache/arena-phase2-exp11-repro-check/evidence/run-suite-result.json
+PIPELINE_EXIT=0
+RUN: patch-to-fixture byte equality for modified source/test (ignore __pycache__)
+src/taskledger/README.md MATCH 69528a58a82788dcbe67515f70e03ccdccb267df9b69d70575fd7db96565c22b
+src/taskledger/api.py MATCH d2e772bcbe743ca22c08717f236d413f0cf809f2298b6acac4d67a2d366aad4d
+src/taskledger/server.py MATCH aa2c62503e95573b958988f831c1bf8a31eb9888739c1ac0f0fa0f943487365e
+src/taskledger/static/index.html MATCH 406f5642497ec71c742e78b618a8c97a8b0d925bfec0c6fa6718579b089de802
+tests/test_taskledger_filter.py MATCH c172564d5f0b75c646f90f09b6ee38099762c265f9910a848c2b87c7833b3188

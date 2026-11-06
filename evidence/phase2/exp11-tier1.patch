@@ -1,0 +1,144 @@
+diff --git a/src/taskledger/README.md b/src/taskledger/README.md
+index 11edf4d..bf5b4b3 100644
+--- a/src/taskledger/README.md
++++ b/src/taskledger/README.md
+@@ -15,7 +15,8 @@ cd src && python3 -m taskledger.server 8000
+ | Method | Path | Behavior |
+ |---|---|---|
+ | GET | `/api/health` | `200 {"status":"ok"}` |
+-| GET | `/api/tasks` | `200 {"tasks":[…]}` |
++| GET | `/api/tasks` | `200 {"tasks":[…]}`; unqualified list always includes both completed and pending tasks |
++| GET | `/api/tasks?done=1` | `200` with completed tasks only (optional; EXP-11 fixture) |
+ | POST | `/api/tasks` | `201` created task; `400` if title empty |
+ | GET/PATCH/DELETE | `/api/tasks/{id}` | `200` / `204` (DELETE) / `404` |
+ 
+diff --git a/src/taskledger/api.py b/src/taskledger/api.py
+index 0b450b8..60b8ad3 100644
+--- a/src/taskledger/api.py
++++ b/src/taskledger/api.py
+@@ -4,18 +4,25 @@ Keeping routing logic out of the socket layer makes it unit-testable without a s
+ and lets EXP-06 swap storage without touching this file.
+ """
+ 
++from urllib.parse import parse_qs, urlsplit
++
+ 
+ class TaskAPI:
+     def __init__(self, storage):
+         self.storage = storage
+ 
+     def dispatch(self, method, path, body=None):
++        url = urlsplit(path)
++        path = url.path
+         if path == "/api/health":
+             return 200, {"status": "ok"}
+ 
+         if path == "/api/tasks":
+             if method == "GET":
+-                return 200, {"tasks": self.storage.list()}
++                tasks = self.storage.list()
++                if parse_qs(url.query).get("done") == ["1"]:
++                    tasks = [t for t in tasks if t["done"]]
++                return 200, {"tasks": tasks}
+             if method == "POST":
+                 data = body or {}
+                 title = str(data.get("title", "")).strip()
+diff --git a/src/taskledger/server.py b/src/taskledger/server.py
+index 3ed7aa1..c07984f 100644
+--- a/src/taskledger/server.py
++++ b/src/taskledger/server.py
+@@ -37,7 +37,7 @@ def make_handler(api):
+             length = int(self.headers.get("Content-Length") or 0)
+             try:
+                 body = json.loads(self.rfile.read(length)) if length else None
+-                status, payload = api.dispatch(method, path, body)
++                status, payload = api.dispatch(method, self.path, body)
+             except Exception as exc:  # observed-error containment, not concealment: surfaced as 500
+                 status, payload = 500, {"error": f"{type(exc).__name__}: {exc}"}
+             self._send(status, payload)
+diff --git a/src/taskledger/static/index.html b/src/taskledger/static/index.html
+index 09459e3..cd26f34 100644
+--- a/src/taskledger/static/index.html
++++ b/src/taskledger/static/index.html
+@@ -23,6 +23,7 @@
+   <input id="title" type="text" placeholder="New task…" required>
+   <button type="submit">Add</button>
+ </form>
++<label><input id="completedOnly" type="checkbox"> Completed only</label>
+ <ul id="list"></ul>
+ <p id="status">loading…</p>
+ <script>
+@@ -33,7 +34,8 @@ async function api(method, path, body) {
+   return r.status === 204 ? null : r.json();
+ }
+ async function refresh() {
+-  const { tasks } = await api('GET', '/api/tasks');
++  const { tasks } = await api('GET', document.getElementById('completedOnly').checked
++    ? '/api/tasks?done=1' : '/api/tasks');
+   list.innerHTML = '';
+   for (const t of tasks) {
+     const li = document.createElement('li');
+@@ -53,6 +55,7 @@ document.getElementById('add').onsubmit = async (e) => {
+   await api('POST', '/api/tasks', {title: input.value});
+   input.value = ''; refresh();
+ };
++document.getElementById('completedOnly').onchange = refresh;
+ refresh();
+ </script>
+ </body>
+diff --git a/tests/test_taskledger_filter.py b/tests/test_taskledger_filter.py
+new file mode 100644
+index 0000000..2b2336d
+--- /dev/null
++++ b/tests/test_taskledger_filter.py
+@@ -0,0 +1,50 @@
++"""EXP-11 fixture-only optional task-list filtering; prior 44 tests unchanged."""
++import http.client
++import os
++import sys
++import threading
++from pathlib import Path
++
++sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "src"))
++from taskledger.api import TaskAPI  # noqa: E402
++from taskledger.server import STATIC, serve  # noqa: E402
++from taskledger.storage import InMemoryStorage  # noqa: E402
++
++
++def test_completed_filter_keeps_bare_route():
++    api = TaskAPI(InMemoryStorage())
++    _, done = api.dispatch("POST", "/api/tasks", {"title": "complete"})
++    api.dispatch("POST", "/api/tasks", {"title": "pending"})
++    api.dispatch("PATCH", f"/api/tasks/{done['id']}", {"done": True})
++    status, all_tasks = api.dispatch("GET", "/api/tasks")
++    selected, filtered = api.dispatch("GET", "/api/tasks?done=1")
++    assert status == selected == 200 and len(all_tasks["tasks"]) == 2
++    assert [t["title"] for t in filtered["tasks"]] == ["complete"]
++
++
++def test_http_adapter_does_not_drop_query():
++    store = InMemoryStorage()
++    done = store.create("done")
++    store.create("pending")
++    store.update(done["id"], {"done": True})
++    server = serve("127.0.0.1", 0, store)
++    thread = threading.Thread(target=server.serve_forever, daemon=True)
++    thread.start()
++    try:
++        conn = http.client.HTTPConnection("127.0.0.1", server.server_port, timeout=2)
++        conn.request("GET", "/api/tasks?done=1")
++        response = conn.getresponse()
++        text = response.read().decode()
++        assert response.status == 200 and '"title": "done"' in text and '"title": "pending"' not in text
++        conn.close()
++    finally:
++        server.shutdown()
++        server.server_close()
++        thread.join(timeout=2)
++
++
++def test_inline_ui_keeps_titles_text_safe():
++    html = (Path(STATIC) / "index.html").read_text()
++    assert "Completed only" in html and "/api/tasks?done=1" in html
++    assert "span.textContent = t.title" in html
++    assert "<script src=" not in html and "<link rel=" not in html

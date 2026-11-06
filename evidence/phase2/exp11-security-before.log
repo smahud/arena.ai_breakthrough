@@ -1,0 +1,11 @@
+UTC 2026-11-06T16:23:33Z
+RUN: local fixture-only HTTP sibling-path containment probe, no protected files
+request_target= /../static_extra/audit.txt status= 200 body= EXP11_FIXTURE_SENTINEL_NOT_SECRET
+
+PROBE_EXIT=0
+Only fixture sentinel was created and removed; fixture status:
+ M src/taskledger/README.md
+ M src/taskledger/api.py
+ M src/taskledger/server.py
+ M src/taskledger/static/index.html
+ A tests/test_taskledger_filter.py

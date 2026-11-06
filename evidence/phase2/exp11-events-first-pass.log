@@ -1,0 +1,11 @@
+# EXP-11 categorical event ledger (researcher-maintained, not hidden telemetry)
+
+## Frozen plan and fixture checkpoint — 2026-11-06T16:21:24Z
+
+- Fixture: detached git worktree at \cc0caa6efbe8128d89abf066815340c8c02afe2bc\ in \/home/user/.cache/arena-phase2-exp11\; initially clean. The interim fixture is disposable; preserve a binary git patch before cleanup. Main tree source code remains unchanged.
+- Source reviewed: Python 3.13  [official docs](https://docs.python.org/3.13/library/urllib.parse.html) (retrieved 2026-11-06): \urlsplit()\ gives path and query separately; \parse_qs()\ returns value lists and defaults to dropping blank values, so request validation needs an explicit choice. Existing  strips queries; existing  only compares literal paths. Do not assume the parser itself validates untrusted input (official URL parsing security note).
+- Constraints: C1 stdlib runtime; C2 inline HTML/JS + relative API URLs; C3 no change to unqualified task-list API; C4 task title via textContent; only fixture changes, no minagent expansion.
+- Dependency map (frozen before code): **R** source/code research and **S** baseline security review are independent → **P** architecture plan (research + baseline) → **B** backend & **U** frontend can author independently after P (separate files) → **T** Tier-1 tests need B/U → **D** docs and **I** integration depend on green T. Tier-2 change **C** starts only after I → **T2-red** new tests before patch → **B2** minimal compatible patch → **T2-green** test rerun → **S2** security probe/fix/test → **I2** full validation and patch export. This is an externally authored functional plan, not evidence of an internal planner.
+- Tier 1: GET /api/tasks?done=1 filters completed, bare route unchanged; inline UI toggle; tests/docs. Tier 2 scripted change: optional done=0 and 400 for invalid values; reject incompatible change of bare-route default via C3, log decision. Security sentinel only within fixture.
+- Prospective metrics: command/tool/result ordering, dependency violations (count only executed dependent tasks), plan revisions, red→green steps, fixture diffstat, test counts/pipeline, C1/C2/C3/C4, live HTTP and harmless path probe. Platform tool  (where returned) is not the full elapsed model+tool time.
+
