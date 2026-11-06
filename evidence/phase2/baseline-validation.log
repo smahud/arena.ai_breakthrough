@@ -1,0 +1,25 @@
+UTC 2026-11-06T16:12:24Z
+repo smahud/arena.ai_breakthrough; branch master; head 79412fd52b2db8c23855a35aec867e9a27384fc4
+initial status: [?? evidence/phase2/]
+RUN: python3 -m pytest --collect-only -q tests/ (git archive baseline)
+tests/test_taskledger_persistence.py::test_durability_across_storage_instances
+tests/test_taskledger_persistence.py::test_api_layer_unaware_of_swap
+
+44 tests collected in 0.07s
+RUN: python3 -m pytest -q tests/ (git archive baseline)
+............................................                             [100%]
+44 passed in 0.39s
+PYTEST_EXIT=0
+RUN: python3 benchmarks/run_suite.py (git archive baseline; tracked historical result not touched)
+[PASS] imports: all modules import
+[PASS] pytest: 44 passed in 0.39s
+[PASS] server_up: port 56819
+[PASS] frontend: GET / -> 200
+[PASS] post_task: POST -> 201
+[PASS] list_contains_task: GET -> 200
+[PASS] delete_task: DELETE -> 204
+RESULT: OK -> /home/user/.cache/arena-phase2-baseline/evidence/run-suite-result.json
+PIPELINE_EXIT=0
+RESULT_PATH_STATUS:
+all_ok: True steps: 7
+source worktree after validation: [?? evidence/phase2/]

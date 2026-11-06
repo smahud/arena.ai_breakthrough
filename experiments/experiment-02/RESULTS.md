@@ -50,3 +50,11 @@ inside their batch. The phrase "dispatched concurrently" above is correct only a
 see F-16 and `experiments/experiment-08/RESULTS.md`. Conclusions about decomposition, failure
 isolation (F-15 — which does not depend on overlap: B's failure surfaced in its own result
 either way), and aggregation are unaffected.
+
+## Phase 2 scope correction (2026-11-06)
+
+The preceding addendum's “streams A/B/C ran one after another inside their batch” extrapolates
+Exp-08's measured **different** bash batch to Exp-02 without per-stream epoch records.
+Exp-02's **precise runtime ordering/overlap is UNKNOWN**; Exp-08 verifies mostly serial
+*with short real adjacent overlap* in its own trials. Its original S4 remains PARTIAL/UNKNOWN
+for the Exp-02 batch. No original result or log was deleted.

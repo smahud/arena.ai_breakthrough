@@ -28,3 +28,12 @@ jsonstore) and runs the combined tests.
 
 **Evidence:** `evidence/exp02-stream-{a,b,c}.log`, `evidence/exp02-integration.log`,
 RESULTS.md records the per-call `duration_ms` values returned by the platform.
+
+## Phase 2 correction note (2026-11-06; original pre-registration retained above)
+
+The parenthetical claim that a single assistant message “executes … concurrently” was an
+untested design assumption, not a platform fact. Exp-08's timed **bash** calls later showed
+mostly serial intervals with short adjacent overlap (F-16); the original Exp-02 batch had no
+preserved per-call interval timestamps, so its precise execution overlap is **UNKNOWN**.
+Batch invocation, failure isolation, and later integration are separate, supported claims.
+`evidence/phase2/baseline-evidence-crosscheck.log` independently re-analyzes Exp-08.

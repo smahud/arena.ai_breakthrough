@@ -13,7 +13,9 @@ the user-visible tool palette plus measured sandbox properties).
 - **Web tools:** ranked search with snippets; full-page fetch with chunking.
 - **Connectors:** per-app loading protocol with explicit statuses (`enabled` / `disconnected`
   / `disabled` / `unsupported`). On this instance: google_drive enabled by the user;
-  **github unsupported** (F-10).
+  **github connector unsupported** (F-10); repository publication via a separate, explicitly
+  authorized REST+git route was verified later (F-19). Connector availability and GitHub
+  repository delivery are distinct capabilities.
 - **Media generation tools** (image/speech) exist in the palette; unused here — not needed by
   any experiment (contract rule 3: no speculative use).
 - **Measured sandbox:** Python 3.13.16, pytest 9.0.3, Node v20.20.2, git 2.47.3, 2 vCPU,

@@ -21,3 +21,10 @@ not change; storage-level tests may gain persistence cases); (4) measure blast r
 
 **Evidence:** `evidence/exp06-diffstat.log`, `evidence/exp06-durability.log`,
 `evidence/exp06-tests-after.log`.
+
+## Phase 2 path correction (2026-11-06; pre-registered paths retained above)
+
+The two planned files `exp06-durability.log` and `exp06-tests-after.log` were **not created**.
+Both test output and SIGKILL-restart verification were recorded together in the existing
+`evidence/exp06-verification.log` instead. The original design paths are not presented as
+actual raw evidence; see `report/phase2-baseline-audit.md` C05.

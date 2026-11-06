@@ -34,3 +34,11 @@ three cases.
   not found), pytest exit 1 (tests failed). Recovery keyed on the code+text pair.
 - Honesty note per DESIGN: faults were scripted; what is evidenced is the loop's shape and
   latency, not spontaneous error discovery.
+
+## Phase 2 criteria clarification (2026-11-06)
+
+The blanket “S3 MET (each failure followed by same-command success)” above is **too broad**:
+F3a (nonexistent binary, exit 127) was diagnosed but **not** re-run successfully as the same
+command; the table already showed “n/a.” Same-command repair/re-verification holds for **F1,
+F2, and F3b only**; F3a contributes environment classification, not a successful recovery.
+`evidence/exp03-faults.log` is unchanged.

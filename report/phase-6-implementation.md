@@ -26,3 +26,10 @@ the fix — the layered validation design worked as intended on its own authors.
 pipefail test→F-03 · concurrency test→F-01 (3×0.25 s sleeps, wall <0.6 s asserted) ·
 classification test→Exp-03 fault classes · false-green test→F-03/F-08 literal marker
 "NO TESTS RAN" · durability/state test→Exp-06 S3 · dep-isolation test→F-15.
+
+## Phase 2 terminology note (2026-11-06)
+
+The original phrase “one parallel batch” denotes **one batched invocation**, not evidence of
+concurrent execution by the platform. `minagent`'s **in-process thread overlap** was tested
+separately (three 0.25 s sleeps completed in <0.6 s). Exp-08's platform bash batches were
+mostly serial with short adjacent overlap; see F-16 / `phase2-baseline-audit.md` C02.

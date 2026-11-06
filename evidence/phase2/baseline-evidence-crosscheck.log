@@ -1,0 +1,23 @@
+UTC 2026-11-06T16:12:42Z
+EXP08 raw epoch re-analysis (no rerun):
+A*.txt n= 4 span= 4.064 overlap_pairs= [('A0', 'A1', 0.095), ('A1', 'A2', 0.052)]
+B*.txt n= 8 span= 7.076 overlap_pairs= [('B0', 'B1', 0.125), ('B1', 'B2', 0.144), ('B2', 'B3', 0.134), ('B3', 'B4', 0.135), ('B4', 'B5', 0.136), ('B5', 'B6', 0.138), ('B6', 'B7', 0.139)]
+Cseq.txt n= 4 span= 4.018 overlap_pairs= []
+EXP06 source-only diff:
+ src/taskledger/server.py  | 10 ++++++--
+ src/taskledger/storage.py | 62 ++++++++++++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 69 insertions(+), 3 deletions(-)
+EXP05 P1 actual bytes and hashes:
+122 evidence/exp05-p1-via-heredoc.txt
+122 evidence/exp05-p1-via-python.txt
+122 evidence/exp05-p1-via-writefile.txt
+366 total
+e04bec28e1847015a60868b791d46e8de17aed3a30246ca7dd2a9444d27614d1  evidence/exp05-p1-via-heredoc.txt
+e04bec28e1847015a60868b791d46e8de17aed3a30246ca7dd2a9444d27614d1  evidence/exp05-p1-via-python.txt
+e04bec28e1847015a60868b791d46e8de17aed3a30246ca7dd2a9444d27614d1  evidence/exp05-p1-via-writefile.txt
+EXP06 designed vs actual evidence paths:
+MISSING evidence/exp06-durability.log
+MISSING evidence/exp06-tests-after.log
+PRESENT evidence/exp06-verification.log
+EXP09 current tests count:
+16 tests collected in 0.04s

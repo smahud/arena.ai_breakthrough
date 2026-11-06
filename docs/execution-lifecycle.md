@@ -30,10 +30,12 @@ Delivery. Phase reports: `report/phase-*.md`.
 
 ## Termination behavior (VERIFIED)
 
-Work stops when acceptance criteria are checkable-green: pipeline exit 0 + audits exit 0 +
-all RESULTS criteria tables filled + delivery status resolved (published OR documented as
-unavailable — here the latter, F-10). No unbounded iteration was observed; retry counts were
-always exactly "until green", max 1 retry per fault in this session.
+Work stopped for the original execution when acceptance criteria were checkable-green:
+pipeline exit 0 + audits exit 0 + RESULTS criteria tables filled. Delivery was initially
+*documented as unavailable* (F-10, historical); it was **later published publicly** by an
+authorized REST+git workflow (F-19; `report/phase-8-delivery.md` UPDATE). No unbounded
+iteration was observed in the original execution; fault retries then closed after one patch.
+This is a dated behavioral record, not a guarantee about subsequent sessions.
 
 ## Time profile (from platform `duration_ms`, selected)
 

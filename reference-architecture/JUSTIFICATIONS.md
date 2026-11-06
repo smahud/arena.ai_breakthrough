@@ -7,7 +7,7 @@ audit; a component without a row here must be deleted.
 |---|---|---|
 | Planner with dep-aware ready-set | directive §5 "task planning"; Exp-01 build-order observation | RQ1; F-05 |
 | Pluggable `decompose_fn` provider | directive §5 "configurable model-provider interfaces" | requirement, not finding |
-| ThreadPoolExecutor(4) for independent tasks | Exp-02 batch dispatch; 2 vCPU measured | F-01, F-09 |
+| ThreadPoolExecutor(4) for independent tasks | Functional choice for local concurrency; independently measured by `test_independent_tasks_run_concurrently_F01` (3×0.25 s <0.6 s). Exp-02 supports *batchability*, not platform-level concurrent execution; 2 vCPU was historical | F-01, F-09, F-16; local test |
 | Uniform ToolResult (exit_code, duration_ms, output) | the only telemetry shape actually observable | F-13 |
 | shell adapter uses pipes carefully / captures stderr | pipefail & masking incidents | F-03 |
 | write adapter tmp+os.replace atomic | jsonstore stream C design validated in Exp-02 | Exp-02 S2 |

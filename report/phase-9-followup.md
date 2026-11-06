@@ -46,3 +46,12 @@ behavior of an evidence-driven process, logged rather than silently edited.
   pipelines should include a commit-readiness check.*
 - 15 phantom-deleted tracked `.pyc` files (same root-cause family: snapshot exclusions vs git
   index) — untracked this session (item 5 above).
+
+## Phase 2 correction notice (2026-11-06; dated report retained)
+
+The original “execute sequentially” description of Exp-08 should be read as **predominantly
+serial with short adjacent overlap**, not strictly non-overlapping and not proof of one worker.
+Independent epoch re-analysis: `../evidence/phase2/baseline-evidence-crosscheck.log`; finding
+F-16 and `phase2-baseline-audit.md` C02 distinguish the terms. This addendum does not change
+the original 44/44 test count or the earlier chronology; F-19 and Phase 2 baseline separately
+supersede the then-current local-only delivery status.

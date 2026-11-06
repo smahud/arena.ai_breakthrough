@@ -50,3 +50,12 @@ overlaps). S3 MET (verdict + raw numbers entered into findings; corrections prop
   (single-sandbox worker); a multi-worker platform could differ — generalization INFERRED at best.
 - The ~0.13 s handoff mechanism (container reuse, process teardown overlap) is not observable
   from inside: UNKNOWN.
+
+## Phase 2 interval re-analysis (2026-11-06; original verdict preserved)
+
+The raw T4/T8 intervals themselves show **2/6 and 7/28 pairwise overlaps**, respectively;
+strict “sequential execution” / “one worker” is therefore stronger than the data. For these
+bash trials, intervals were **mostly serial with short real adjacent overlap**, and all-at-once
+execution is REFUTED. Worker count and the reason for overlap are **UNKNOWN**. The original
+Exp-02 streams did not have raw per-stream epochs; Exp-08 cannot establish their exact order.
+Independent arithmetic: `evidence/phase2/baseline-evidence-crosscheck.log` (F-16 revised).

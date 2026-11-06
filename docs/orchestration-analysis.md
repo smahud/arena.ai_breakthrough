@@ -2,10 +2,11 @@
 
 ## Observed coordination patterns (all VERIFIED, sources in `evidence/`)
 
-1. **Batch dispatch of independent units.** Tool calls with no data dependency were issued in
-   a single block and returned as a set (Exp-02: 3 streams; Exp-01: 8 artifact writes). The
-   invariant actually used: *independence is decided at authoring time* — streams A/B/C had
-   zero shared code by design, which made conflict resolution unnecessary rather than solved.
+1. **Batched invocation of independent units.** Tool calls with no data dependency were
+   issued in one assistant message and returned as separate results (Exp-02: 3 streams;
+   Exp-01: 8 artifact writes). This is **not** evidence of simultaneous execution; Exp-08
+   timed bash calls were mostly serial with short adjacent overlap (F-16). The invariant used:
+   independence was decided at authoring time; streams A/B/C had no shared code.
 2. **Failure isolation in batches.** A failing unit (stream B) neither blocked nor corrupted
    siblings (A, C green in same batch); the failure surfaced at aggregation (F-15).
 3. **Sequential aggregation step.** Integration (`pipeline.py`) ran strictly after all streams

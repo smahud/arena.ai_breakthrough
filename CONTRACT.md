@@ -47,6 +47,29 @@ unavailable, the complete deliverable is preserved in this workspace as a fully 
 git repository, and the remaining publishing steps are documented in `report/phase-8-delivery.md`.
 No claim of publication is or will be made.
 
+## Phase 2 continuation addendum — 2026-11-06 (supersedes delivery status above)
+
+The preceding **Environment Constraint Log and Consequence** are a dated Phase-1 snapshot,
+not the current delivery verdict. The GitHub connector was `unsupported` at that time and
+remains unsupported in this session; nevertheless, a later user-authorized REST+git workflow
+published the repository, first privately at 15:08Z and then publicly at 16:03Z on explicit
+authorization. See `report/phase-8-delivery.md` UPDATE,
+`evidence/delivery-verification.log`, and Phase 2's anonymous API/remote-HEAD check in
+`evidence/phase2/baseline-repository-probe.log`. Current baseline: **PUBLIC**. An unsupported
+connector does not negate other authorized delivery paths; it never authorizes use of
+credentials the user has not supplied. Phase 2 must independently verify its own push; prior
+publication does not grant this new session write access.
+
+Rules 1–12 remain binding. Phase 2 additionally distinguishes **REFUTED** (a prior claim
+contradicted by evidence) from UNKNOWN; records question, hypotheses, alternatives, variables,
+controls, measurements, raw observations, results, limits, and reproduction steps for each new
+experiment; and preserves historical evidence rather than overwriting it. Because
+`benchmarks/run_suite.py` writes tracked `evidence/run-suite-result.json`, run the full pipeline
+in a clean `git archive` copy before each commit (or save the newly generated result to a
+separate Phase 2 evidence file without replacing the earlier result). Run tests and pipeline
+green before each commit, record exit codes, and keep root `report/` phase reports. Neither
+research security boundaries nor anti-overengineering requirements are relaxed.
+
 ## Constraint C-1 (used by Experiment 04)
 
 > **C-1:** All Python artifacts in this repository must run on the stock sandbox interpreter

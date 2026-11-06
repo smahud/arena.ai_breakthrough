@@ -17,13 +17,19 @@
   Transient/flaky class now tested via a deterministic counter-file model (Exp-09, F-17);
   genuinely nondeterministic flakiness, resource exhaustion, and network partitions mid-call
   remain UNKNOWN.
-- **L-6 Timing measurements are coarse.** 2-vCPU sandbox; `duration_ms` includes platform
-  overhead; true parallel-overlap of batched calls not measurable from results (H-1).
+- **L-6 Timing measurements are coarse.** The historical sandbox had 2 vCPU;
+  `duration_ms` includes platform overhead. Exp-08's *in-call epoch files* independently
+  measure mostly serial bash execution with short adjacent overlap (F-16), correcting the
+  original “not measurable” assessment for **bash**. Worker count, scheduling mechanism,
+  non-bash start times, and other environments remain UNKNOWN.
 - **L-7 No user-in-the-loop stress.** Clarification behavior, interrupt handling, and
   mid-task goal changes *by the user* (as opposed to scripted CR-1) were not exercised.
 - **L-8 Reference implementation scale.** `minagent` validates the functional architecture at
   toy scale (dozens of tasks, local tools). Behavior at production scale (hundreds of
   concurrent tools, remote APIs, long horizons) is UNKNOWN.
-- **L-9 GitHub delivery unverified end-to-end.** Connector unsupported here (F-10); the
-  documented publishing steps in `report/phase-8-delivery.md` are therefore *instructions*,
-  not a verified workflow.
+- **L-9 GitHub delivery unverified end-to-end (HISTORICAL, SUPERSEDED).** The original
+  connector-only conclusion was valid for the first delivery attempt, not the later authorized
+  REST+git publication. Public repo and remote HEAD were independently verified in Phase 2
+  (`evidence/phase2/baseline-repository-probe.log`, F-19). This new session's *write access*
+  and any Phase 2 push remain UNKNOWN until independently verified. Original wording is
+  preserved in `report/phase-8-delivery.md` under “Original report.”

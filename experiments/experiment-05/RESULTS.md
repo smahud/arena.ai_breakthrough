@@ -51,3 +51,13 @@ step must assert **test count > 0**, not merely exit status. (Feeds reference im
 
 ## S3 — behavior-changing differences: 3 documented (pipefail adoption, false-green guard,
 PID-based cleanup). MET.
+
+## Phase 2 P1 evidence correction (2026-11-06)
+
+The original “92-byte canonical” is **REFUTED** by `wc -c` on all three preserved files:
+**122 bytes each**, hash `e04bec28…` equal across the three methods. The “2541-byte … also
+matched” statement has no corresponding preserved source/target or hash log and is **UNKNOWN**
+under the evidence contract. The claim of fidelity is scoped to **one 122-byte three-method
+trial**, not arbitrary sizes. Original statements are retained above as a historical record;
+check `evidence/phase2/baseline-evidence-crosscheck.log` and
+`report/phase2-baseline-audit.md` C06.

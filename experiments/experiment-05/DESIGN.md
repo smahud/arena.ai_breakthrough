@@ -22,3 +22,11 @@ and by `time` inside the shell):**
   with evidence (not merely asserted).
 
 **Evidence:** `evidence/exp05-p{1..4}-*.log`.
+
+## Phase 2 evidence correction (2026-11-06)
+
+The planned P1 “~2 KB payload” was not what the three preserved canonical artifacts show:
+all are **122 bytes** and share a SHA-256. This dated design is preserved as pre-registration;
+report only the **executed** size as VERIFIED. The extra 2541-B assertion in RESULTS has no
+matching preserved raw artifact and remains UNKNOWN (audit:
+`evidence/phase2/baseline-evidence-crosscheck.log`).

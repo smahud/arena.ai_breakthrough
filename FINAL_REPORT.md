@@ -108,5 +108,9 @@ the same loop shape it encodes.
 
 ---
 
-*Phase reports: `report/phase-1…9`. Findings: `docs/findings.md` (F-01…F-18). Raw evidence:
-`evidence/` (30+ logs). This report contains no claim unsupported by a preserved artifact.*
+*Phase reports: `report/phase-1…9`. Findings at original close: F-01…F-18. Raw evidence:
+`evidence/` (30+ files). This is the **historical Phase-1/follow-up final report**. Phase 2
+independently audited the evidence and logged qualifications/corrections in
+`report/phase2-baseline-audit.md` (including F-19's retrospective registration and the
+adjacent-overlap qualification to Exp-08). Phase 2 results belong in its separate final report;
+the original conclusions above are preserved as a dated record rather than silently rewritten.*

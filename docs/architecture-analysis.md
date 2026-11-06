@@ -36,7 +36,7 @@ workspace persistence across calls, managed background processes (F-04), connect
 |---|---|---|
 | Goal interpretation & scoping | experiment DESIGns written before code; scope limits stated (Exp-04, Exp-07 chunk restraint) | VERIFIED behavior |
 | Decomposition & sequencing | Exp-01 build order storage→api→server→frontend→tests→pipeline; designs precede execution | VERIFIED behavior |
-| Parallel work dispatch | F-01, F-15 | VERIFIED |
+| Batched invocation with per-unit results | F-01, F-15 | VERIFIED for observed batches; runtime overlap separately measured by F-16 |
 | Validation layer | run_suite.py, pytest, audits; false-green guards needed (F-03, F-08) | VERIFIED |
 | Recovery controller | F-02, F-14 loop shape | VERIFIED |
 | Externalized state | CONTRACT.md (constraints), evidence/ (raw memory), git (checkpoints) | VERIFIED |
@@ -67,8 +67,9 @@ These are **DOCUMENTED**, and where tested here also VERIFIED.
 - **A3 Multi-specialist composition:** several narrowly-scoped workers (coder, tester,
   documenter) coordinated by an orchestrator.
 
-All three predict: batched parallel dispatch, sequential validation, one-call recovery loops,
-constraint persistence, and the telemetry profile of F-13. **Nothing in this study's evidence
+All three can produce batched invocation with mostly serial bash timing, separate validation
+steps, short recovery loops, written constraint handling, and F-13's tool-result telemetry.
+None alone specifies an internal worker count. **Nothing in this study's evidence
 discriminates between A1–A3.** Per directive §2E, no distinct models or agents are inferred
 from style/speed differences; the number and arrangement of internal generators is UNKNOWN.
 The reference implementation (Phase 6) therefore instantiates the *functional* components of
@@ -77,8 +78,10 @@ inspectability, not because A2 was evidenced over A1.
 
 ## 6. What would discriminate (future authorized experiments)
 
-- ~~Latency-vs-batch-size curves (N=1..8) to test true parallelism (H-1)~~ — **DONE (Exp-08):
-  sequential with pipelined handoffs; F-16.** Remaining: interval-instrument non-bash tools.
+- ~~Latency-vs-batch-size curves (N=1..8) for all-at-once bash execution (H-1)~~ —
+  **DONE for Exp-08 conditions**: mostly serial *with measured adjacent overlap* (F-16).
+  Remaining: non-bash completion ordering and mechanism under different workloads. Timing
+  alone cannot identify worker count or protected implementation boundaries.
 - Cross-message constraint tests over days (H-3, L-4).
 - Context-pressure tests: force long transcripts, watch for compaction artifacts (H-4).
 - Deliberate mid-batch contradiction to test arbitration ordering at scale.

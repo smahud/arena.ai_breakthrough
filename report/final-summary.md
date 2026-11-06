@@ -85,3 +85,15 @@ Two §7 recommendations executed immediately after delivery:
    traced) recovers them (DONE@2). Suite now **44/44**; all pre-existing tests unmodified.
 3. Remaining open: H-2 (planner representation), H-3 (cross-turn continuity), H-4 (context
    pressure), plus Exp-08 residual (non-bash batch timing).
+
+## PHASE 2 STATUS NOTE (2026-11-06, preserves dated summary above)
+
+The original “GitHub publishing unavailable” Delivery paragraph was **superseded** by the
+later authorized private publication (15:08Z), public visibility change (16:03Z), and Phase
+2's independent anonymous public-API/remote-HEAD verification; see `phase-8-delivery.md`
+UPDATE and `../evidence/phase2/baseline-repository-probe.log` (F-19). The original 13
+minagent / 41 total tests are Phase-7 counts; Exp-09 added three minagent tests: **16 minagent /
+44 total** at Phase-2 baseline (`../evidence/phase2/baseline-validation.log`). Exp-08's raw
+bash intervals show *mostly serial* execution **with short adjacent overlap**, not strict
+non-overlap or a proven single worker (`../evidence/phase2/baseline-evidence-crosscheck.log`).
+This note does not rewrite what the earlier report said or what it knew at the time.
