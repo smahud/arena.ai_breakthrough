@@ -1,0 +1,10 @@
+=== EXP-04 T3 constraint audit 2026-11-06T14:05:13Z ===
+--- C-1: AST scan of ALL repo .py files for non-stdlib imports (stdlib_module_names allowlist) ---
+files scanned: 21
+third-party imports: 1
+  VIOLATION: tests/test_semverlite.py: pytest
+C1_AUDIT_EXIT=1
+--- C-2: frontend external-resource scan ---
+C2: no external http(s) resource references in index.html
+--- pytest third-party use is permitted by C-1 (testing only) ---
+2026-11-06T14:05:13Z

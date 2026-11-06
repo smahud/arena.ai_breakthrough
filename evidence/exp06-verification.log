@@ -1,0 +1,28 @@
+=== EXP-06 CR-1 verification 2026-11-06T14:04:41Z ===
+--- full suite: pre-existing API tests UNMODIFIED + new persistence tests ---
+............................                                             [100%]
+28 passed in 0.03s
+PYTEST_EXIT=0
+
+--- blast radius vs checkpoint d713a28 ---
+ src/taskledger/__pycache__/storage.cpython-313.pyc | Bin 2485 -> 6967 bytes
+ src/taskledger/server.py                           |  10 +++-
+ src/taskledger/storage.py                          |  62 ++++++++++++++++++++-
+ 3 files changed, 69 insertions(+), 3 deletions(-)
+ M src/taskledger/__pycache__/storage.cpython-313.pyc
+ M src/taskledger/server.py
+ M src/taskledger/storage.py
+
+--- S4 conflict check: any 'requests' import? (T2 injection vs C-1) ---
+requests: NOT USED (conflict resolved per C-1 -> stdlib urllib only)
+13:import urllib.request
+29:    req = urllib.request.Request(url, data=data, method=method,
+
+--- S3 live restart-durability scenario (real process kill, not mocked) ---
+taskledger listening on 8197
+{"id": "ade6145524bb", "title": "durable task", "done": false, "created_at": 1793973882.7086828}
+server SIGKILLed (simulating hard restart)
+taskledger listening on 8197
+after restart:
+{"tasks": [{"id": "ade6145524bb", "title": "durable task", "done": false, "created_at": 1793973882.7086828}]}
+2026-11-06T14:04:43Z

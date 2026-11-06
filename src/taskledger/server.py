@@ -4,7 +4,13 @@ import os
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 from .api import TaskAPI
-from .storage import InMemoryStorage
+from .storage import InMemoryStorage, SQLiteStorage
+
+
+def make_storage():
+    """CR-1 factory: TASKLEDGER_DB env var selects SQLite persistence; default in-memory."""
+    db = os.environ.get("TASKLEDGER_DB")
+    return SQLiteStorage(db) if db else InMemoryStorage()
 
 STATIC = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static")
 
@@ -65,7 +71,7 @@ def make_handler(api):
 
 
 def serve(host="127.0.0.1", port=8000, storage=None):
-    api = TaskAPI(storage if storage is not None else InMemoryStorage())
+    api = TaskAPI(storage if storage is not None else make_storage())
     return ThreadingHTTPServer((host, port), make_handler(api))
 
 
