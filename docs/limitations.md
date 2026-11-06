@@ -43,7 +43,9 @@
   and a real within-chat user turn. No cross-platform or multi-model sample exists.
 - **L-4 refined:** a genuine *same-chat* user-message boundary occurred during EXP-11,
   revealing loss of one excluded `.cache` fixture and survival of its persisted patch/git
-  artifacts (F-21). Cross-**new-chat** constraint resolution, days-later continuity and
+  artifacts (F-21); a second same-chat turn retained the *new* persistent worktrees and
+  uncommitted draft (`second-turn-check.log`). Cross-**new-chat** constraint resolution,
+  days-later continuity and
   automatic **compaction events** are still UNKNOWN/PENDING. Public documentation of a
   compaction feature is not an observed compaction occurrence.
 - **L-5 scope:** EXP-11's requirement change and red security regression were scripted;
@@ -57,6 +59,12 @@
   confounded. File-tool *completion*, not start, was measured; workers/models UNKNOWN.
 - **L-7 retained:** the real “Lanjutkan” turn was not a user-originated change in task
   goal; clarification/interrupt stress and long-horizon feedback remain untested.
-- **L-9 pending:** Phase-2 git write/push status must be updated only after an actual
-  noninteractive authorized push attempt and remote confirmation; historical Phase-8
-  publication does not authorize claiming Phase-2 delivery.
+- **L-9 actual delivery outcome (2026-11-06T17:40Z):** the prior sentence was the
+  **pre-attempt** rule. After local commits, an authorized, noninteractive, no-force
+  `git push --dry-run` to the public repository failed **exit 128**: `could not read
+  Username for 'https://github.com': terminal prompts disabled` (no credential helper,
+  no `origin` in this snapshot; `github` connector `unsupported`). No real push was
+  attempted; anonymous remote master still `79412fd`. Phase-2 commits are **local,
+  unpublished**, not falsely described as delivered. Full transcript:
+  `evidence/phase2/publication-attempt.log`. A later supported authorization can
+  unblock a fast-forward push; no token should be pasted or stored in the repo.

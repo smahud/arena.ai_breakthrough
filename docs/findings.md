@@ -204,8 +204,11 @@ unanticipated recovery required an observable plan change (fixture location, che
 restore). *Alternatives:* platform snapshot policy, process/workspace lifecycle, or their
 combination; no evidence of internal forgetting. *Confidence:* **VERIFIED** for this
 within-chat **turn** and these paths; *new chat* context transfer **PENDING**. *Repro:*
-`evidence/phase2/{turn-boundary-check.log,exp11-recovery.log,exp11-tier1.patch}`; next
-actual turn may recheck artifacts, but do not simulate a different chat.
+`evidence/phase2/{turn-boundary-check.log,exp11-recovery.log,exp11-tier1.patch}`.
+On a **second genuine same-chat** user turn, the later persistent worktrees, patch SHA
+and uncommitted publication-update draft also survived (`second-turn-check.log`).
+This strengthens the *path-scoped artifact* observation; do not simulate a different
+chat or infer internal conversational memory.
 
 **F-22 — Security test exposed a baseline artifact defect and drove a narrow fix** · RQ3/RQ5 · Exp-11
 The baseline taskledger static guard used string prefix `startswith(STATIC)`; a literal

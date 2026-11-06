@@ -29,3 +29,31 @@ in `final-validation.log` was green because untracked raw artifacts were not yet
 **Integrity and scope:** final fixture patch `evidence/phase2/exp11-fixture.patch` SHA-256 `b813bdeca507de692a9c5fc8e478db5cbffe02edd5c9b757c4d47eecbef08c25`, five files, 117 insertions/6 deletions, applicable to base `c0caa6e`. The experiment feature remains **fixture-only**; main contains only static guard + focused regression. Historical results (`44`, Exp-08 timing, Phase-8 publication) remain dated records. User-turn `.cache` loss was genuine within-chat continuity evidence (F-21) but genuine **new-chat** continuity remains PENDING; no model identity, hidden worker/router trace or compaction event is claimed.
 
 **Before publication:** inspect staged diff for secrets, run final `git diff --check`/tests as needed, commit and verify local HEAD; attempt authorized, noninteractive `git push` without force or stored tokens, check anonymous remote HEAD. If publication cannot proceed, record exact failure and leave reproducible local commits. A public historical repo is not proof that these new Phase-2 commits are public.
+
+**Outcome after preflight (2026-11-06T17:40Z):** local commits
+`cd5c029c68501a24d447b6ae6d55c4c74d9c5693` (EXP-10),
+`b33d900335b19532b6234e385e4f51d1839261e4` (EXP-11/security), and
+`65088210a6fd686d39690f9b87817a00e0fe82be` (docs/reports) succeeded.
+Staged secret-pattern checks found **zero** matches (not a claim of perfect detection).
+Anonymous remote `master` was still `79412fd…`, a local ancestor. No `origin` remote
+or noninteractive credential helper was present in this snapshot. The GitHub connector
+had returned `unsupported`. A no-force push **dry-run** against the exact public HTTPS
+URL failed **exit 128**: `unable to read askpass response from '/bin/false'` and
+`could not read Username for 'https://github.com': terminal prompts disabled`.
+**No real push occurred**; anonymous remote remained `79412fd…` afterward.
+Verbatim evidence: [`publication-attempt.log`](../evidence/phase2/publication-attempt.log).
+The commits/evidence in this workspace are **local, not public commit links**. A later
+user-supplied supported write authorization (without pasting or storing a token in the
+repository) is required for fast-forward publication; do not force push.
+
+**Additional genuine same-chat turn:** after the user's later “Lanjutkan” message,
+main HEAD, the previously uncommitted publication update, both persistent detached
+worktrees and fixture patch SHA-256 were still present
+([`second-turn-check.log`](../evidence/phase2/second-turn-check.log)). This is a
+second **within-chat** turn boundary, **not** a new chat session or compaction test.
+
+**Final closing check (2026-11-06T19:08Z):** main **45/45**, disposable pipeline
+**7/7**, SHA-256 of the fixture patch unchanged, 21 Phase-2/docs/README files with
+zero broken local links, all F-01…F-22 definitions present, `src/minagent` unchanged;
+anonymous remote still `79412fd`.
+[`closing-validation.log`](../evidence/phase2/closing-validation.log) preserves output.

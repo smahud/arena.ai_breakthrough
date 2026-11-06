@@ -12,11 +12,14 @@ experimental fixture **50/50** tests green in an independently replayed worktree
 The **historical baseline is PUBLISHED — PUBLIC**:
 [github.com/smahud/arena.ai_breakthrough](https://github.com/smahud/arena.ai_breakthrough)
 (created private 15:08Z; public since 16:03Z on explicit user authorization, anonymously
-verified; full record in `report/phase-8-delivery.md`). **Phase-2 publication status is
-separate and must be verified after commit/push.** Historical report:
-[`FINAL_REPORT.md`](FINAL_REPORT.md); Phase-2 execution reports:
-[`report/phase2-experiment-results.md`](report/phase2-experiment-results.md),
-[`report/phase2-behavioral-analysis.md`](report/phase2-behavioral-analysis.md).
+verified; full record in `report/phase-8-delivery.md`). **Phase-2 commits are local,
+NOT published:** a noninteractive `git push --dry-run` failed with exit 128 because no
+GitHub credentials were available and the GitHub connector is unsupported; anonymous
+remote master remained `79412fd` ([publication record](evidence/phase2/publication-attempt.log)).
+No token was stored, no force push attempted. **Phase-2 final report:**
+[`report/phase2-final-report.md`](report/phase2-final-report.md) (seven questions,
+local commit/evidence map, publication blocker). Historical report:
+[`FINAL_REPORT.md`](FINAL_REPORT.md).
 
 ## What's here
 

@@ -43,7 +43,9 @@ matched 5/5 earlier file hashes and 2/2 recorded Tier-2 hashes
 (`exp11-recovery.log`). **Reason for correction:** a real within-chat user-turn boundary
 was subsequently observed. **Updated statement:** state **in persisted artifacts**
 survived this *same chat* turn and enabled precise reconstruction; one excluded `.cache`
-path did not. This verifies an externalized-state recovery strategy, not a model's
+path did not. A second genuine user continuation preserved the new persistent worktrees,
+patch SHA-256 and an uncommitted publication-update draft (`second-turn-check.log`).
+This verifies an externalized-state recovery strategy, not a model's
 unassisted memory or cross-chat constraint survival. A genuine **new-chat** continuity
 check remains PENDING; a real context compaction event is **UNKNOWN**. Public
 [token-limit documentation](https://help.arena.ai/articles/3975292349-arena-troubleshooting-session-token-limits)

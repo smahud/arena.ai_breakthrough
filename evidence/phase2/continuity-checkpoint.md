@@ -1,0 +1,19 @@
+# Phase-2 continuity checkpoint (artifact, not model memory)
+
+**Recorded:** 2026-11-06 UTC, after two actual **same-chat** user continuations and a failed publication dry-run. This file is for an authorized future **genuine new chat**, not evidence that such a chat has occurred. Read the live repository first; do not trust this capsule if it conflicts with Git.
+
+## Re-establish state by observable checks
+
+1. Public repository URL: `https://github.com/smahud/arena.ai_breakthrough`; anonymous `master` remained `79412fd52b2db8c23855a35aec867e9a27384fc4` on the last check in `publication-attempt.log`. These Phase-2 commits are **local and not public** as of this checkpoint. Check `git ls-remote --symref` again rather than assuming this remains true.
+2. Local audit commit `c0caa6efbe8128d89abf066815340c8c02afe2bc`; plan/design `9430392dece0030abb264121e94a02d13681f7d6`; EXP-10 commit `cd5c029c68501a24d447b6ae6d55c4c74d9c5693`; EXP-11 + security commit `b33d900335b19532b6234e385e4f51d1839261e4`; synthesis commit `65088210a6fd686d39690f9b87817a00e0fe82be`. A later closing-report commit should be identified from actual `git log`, not guessed here.
+3. Artifact state: Phase-1 baseline 44 tests; current main 45/45 and 7/7 pipeline after one security regression; the **fixture-only** optional task filter/UI has 50/50 and 7/7 in a clean replay. Fixture patch SHA-256 `b813bdeca507de692a9c5fc8e478db5cbffe02edd5c9b757c4d47eecbef08c25`, base `c0caa6e`, preserved at `evidence/phase2/exp11-fixture.patch`. `src/minagent` unchanged. See `report/phase2-independent-verification.md` and raw `final-validation*.log` for the first verifier's harmless filename error and corrected check.
+4. Initial constraints: C1 **zero third-party runtime imports**; C2 **inline frontend, no CDN**; C3 **unqualified task-list API stays backward compatible**; C4 title via `textContent`; C5 **no protected internals, credentials or hidden routing probes**. Contract `CONTRACT.md` takes precedence; a future user may explicitly revise their own constraints, which should be documented before implementation.
+5. Publication: GitHub connector lookup was `unsupported`; no `origin` and no credential helper were configured at the dry-run; `GIT_TERMINAL_PROMPT=0 GIT_ASKPASS=/bin/false git push --dry-run ... HEAD:refs/heads/master` failed **128**, could not read username. No real push or force push attempted; no token stored. To publish, obtain a **supported authorization path** from the user/environment (do not request a token in chat or put one in files), verify remote fast-forward and use non-force push, then independently verify anonymous HEAD.
+
+## Observed vs pending boundaries
+
+- Real same-chat continuation #1: excluded `.cache` fixture disappeared, while patch/main repo persisted; artifact-backed reconstruction matched 5/5 Tier-1 and 2/2 Tier-2 hashes. `turn-boundary-check.log`, `exp11-recovery.log`.
+- Real same-chat continuation #2: persistent detached worktrees, saved patch hash, main HEAD and uncommitted publication draft remained present. `second-turn-check.log`.
+- **PENDING**: actual **new-chat** constraint continuity; an observation of automatic context compaction; identifiable model, hidden agent count or private tool routing. Do not re-label either same-chat turn a new session. If a user begins a genuinely new chat and intentionally requests a CDN contrary to C2, evaluate its response against this *written artifact* versus unverifiable conversational recollection. Do not impersonate that future user or manufacture a reset.
+
+**Minimum open experiment:** if the supported interface permits actual same-response direct multi-call submission, compare two repetitions of matched N=4/d=1 explicit-wrapper vs direct envelopes in one real session, preserving tool return envelopes and inside-call intervals. If the interface blocks it, document the blocker instead of substituting sequential turns. Even then, worker/model identity remains UNKNOWN.

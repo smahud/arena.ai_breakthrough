@@ -1,0 +1,34 @@
+# Phase-2 closing validation 2026-11-06T19:08:40Z
+local_HEAD 65088210a6fd686d39690f9b87817a00e0fe82be
+# Tests main repo
+.............................................                            [100%]
+45 passed in 0.93s
+# Seven-gate pipeline on disposable copy (historical evidence unchanged)
+[PASS] imports: all modules import
+[PASS] pytest: 45 passed in 0.92s
+[PASS] server_up: port 38189
+[PASS] frontend: GET / -> 200
+[PASS] post_task: POST -> 201
+[PASS] list_contains_task: GET -> 200
+[PASS] delete_task: DELETE -> 204
+RESULT: OK -> /home/user/arena-closing-k1x8t0i3/evidence/run-suite-result.json
+PASS: exactly 7 gates
+# Doc links and evidence digest
+markdown_files 21 broken_local_links []
+fixture_patch_sha256 b813bdeca507de692a9c5fc8e478db5cbffe02edd5c9b757c4d47eecbef08c25
+F-01..F-22 all defined
+# scope and diff
+ M README.md
+ M docs/context-management.md
+ M docs/findings.md
+ M docs/limitations.md
+ M docs/public-capabilities.md
+ M report/phase2-architecture-reassessment.md
+ M report/phase2-independent-verification.md
+?? evidence/phase2/closing-validation.log
+?? evidence/phase2/continuity-checkpoint.md
+?? evidence/phase2/publication-attempt.log
+?? evidence/phase2/second-turn-check.log
+?? report/phase2-final-report.md
+public_remote_master 79412fd52b2db8c23855a35aec867e9a27384fc4	refs/heads/master
+# Completed 2026-11-06T19:08:44Z
