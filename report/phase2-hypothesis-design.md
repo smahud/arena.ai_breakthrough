@@ -1,0 +1,13 @@
+# Phase 2.2 — Hypothesis design and experiment selection report
+
+**Objective:** After baseline correction, choose the smallest authorized experiments that distinguish high-value functional execution questions without rebuilding `minagent`.
+
+**Actions:** Reviewed F-16's timing boundary, F-13's telemetry limits, Exp-01/06's taskledger seam, and all hypothesis gaps H-2/3/4. Wrote `docs/phase2-research-plan.md` (H-A1…A4, alternative explanations, priority matrix, fingerprint schema, future continuity protocol), pre-registered `experiments/experiment-10/DESIGN.md` and `experiment-11/DESIGN.md` before new trial execution. Used official Arena help/blog pages (source ledger: `evidence/phase2/public-docs-sources.md`) to scope product documentation versus this session's observable interface.
+
+**Files inspected/created:** inspected `docs/findings.md`, `docs/architecture-analysis.md`, `experiments/experiment-08/{DESIGN,RESULTS}.md`, `src/taskledger/{api,server,storage}.py`, `src/taskledger/static/index.html`, `tests/*.py`, `benchmarks/run_suite.py`, official source pages S1–S8 in the retrieval ledger. Created the two DESIGN.md files, plan, source ledger, and this report. No production source or previous evidence modified in this phase.
+
+**Commands/tests/evidence:** `git status`, `git log`, and earlier baseline's 44/44 tests + 7/7 pipeline recorded in `evidence/phase2/{baseline-validation,audit-validation}.log`; official documentation fetched with supported web tools (retrieval date/URLs in the ledger). New experiment commands: **none yet**. Before committing this plan, re-run tests/pipeline from a clean copy per CONTRACT addendum.
+
+**Decision/finding:** SELECT EXP-10 (small duration-controlled bash + mixed tool/timeouts) and EXP-11 (isolated heterogeneous taskledger maintenance). PUBLIC-DOC review selected as documentation, not a platform experiment. A genuine new-session contradiction remains **PENDING**, context exhaustion **DEFERRED**, and additional infrastructure **REJECTED**. H-A1 vs H-A2 are behaviorally nonidentifiable without direct authorized telemetry; H-A3 task-category fingerprints cannot identify separate models; H-A4 functional adaptation can be evaluated narrowly.
+
+**Failures:** none in this design phase. **Unresolved:** non-bash call starts cannot be directly timed from file tool; user-facing tool results do not provide token/model/planner state; write access to GitHub not established. **Next:** freeze the designs, run EXP-10 and EXP-11 with raw evidence; classify negative and ambiguous results honestly. Phase-2.3 execution report follows only after work is done.
