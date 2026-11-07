@@ -17,3 +17,16 @@
 - **PENDING**: actual **new-chat** constraint continuity; an observation of automatic context compaction; identifiable model, hidden agent count or private tool routing. Do not re-label either same-chat turn a new session. If a user begins a genuinely new chat and intentionally requests a CDN contrary to C2, evaluate its response against this *written artifact* versus unverifiable conversational recollection. Do not impersonate that future user or manufacture a reset.
 
 **Minimum open experiment:** if the supported interface permits actual same-response direct multi-call submission, compare two repetitions of matched N=4/d=1 explicit-wrapper vs direct envelopes in one real session, preserving tool return envelopes and inside-call intervals. If the interface blocks it, document the blocker instead of substituting sequential turns. Even then, worker/model identity remains UNKNOWN.
+
+## Dated delivery addendum — 2026-11-07T04:57Z (earlier checkpoint retained)
+
+The “local and not public” and “dry-run failed” statements above are the **original
+2026-11-06 checkpoint**, not current status. After the user supplied a PAT, an
+accepted no-force push and independent anonymous checks verified public `master` at
+`600f7620d569bf9f4986fdb87a4387ee50ea6400` with the final report HTTP 200.
+See `publication-success.log` and `report/phase2-publication.md` for evidence.
+The local closing-report commit is **`600f762…`**; a later documentation-correction
+commit should be read from *actual git*, not invented in this file. No new-chat
+constraint experiment, protected internal trace or compaction event followed from
+this publication step. The PAT was posted into this chat/tool input; revoke/rotate
+after final delivery rather than treating the conversation as a secret vault.

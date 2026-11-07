@@ -172,6 +172,14 @@ credentialed publication **DOCUMENTED** by `evidence/delivery-verification.log` 
 **UNKNOWN** until tested. This is a **registry repair of an earlier F-10 reference**, not a
 newly executed experiment. *Architectural implication:* connector support does not imply or
 preclude standard, separately authorized git/API access; no platform internals follow.
+**Dated Phase-2 addendum (2026-11-07):** the “write authorization UNKNOWN” sentence
+records the **earlier audit state**. A later no-auth dry-run failed (exit 128);
+a user-supplied PAT then authenticated as `smahud` with push permission and a non-force
+fast-forward push moved public `master` from `79412fd` to `600f762`; anonymous Git refs,
+commit and report API checks verified the result. **VERIFIED** for this authorized
+publication only; connector remains `unsupported`. Original failure and later success
+are separately preserved in `evidence/phase2/publication-{attempt,success}.log` and
+`report/phase2-publication.md`; no model/tool-routing inference.
 
 **F-20 — Explicit-wrapper batches overlap; scheduling is not universal** · RQ2/RQ3 · Exp-10
 Four primary N=3 `multi_tool_use.parallel` bash batches (two 0.25 s, two 0.75 s) recorded

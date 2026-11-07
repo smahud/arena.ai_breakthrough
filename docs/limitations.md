@@ -68,3 +68,20 @@
   unpublished**, not falsely described as delivered. Full transcript:
   `evidence/phase2/publication-attempt.log`. A later supported authorization can
   unblock a fast-forward push; no token should be pasted or stored in the repo.
+
+### L-9 publication correction, 2026-11-07T04:57Z (earlier failure retained above)
+
+**Original statement:** no Phase-2 push occurred after the failed no-auth dry-run;
+remote `master=79412fd`. **New evidence:** after the user *voluntarily supplied* a PAT,
+GitHub verified identity `smahud` and `permissions.push=true`; a **non-force** fast-forward
+push succeeded (exit 0) and an **anonymous** remote/API check verified
+`master=600f7620d569bf9f4986fdb87a4387ee50ea6400`, public final-report content
+HTTP 200. **Reason for correction:** authorization became available *later*; the earlier
+failure was accurate at its time but no longer describes delivery status.
+**Updated statement:** six Phase-2 commits through `600f762` are **PUBLISHED PUBLIC**;
+the GitHub connector remains `unsupported`, standard authorized HTTPS git worked.
+See [`publication-success.log`](../evidence/phase2/publication-success.log) and
+[`phase2-publication.md`](../report/phase2-publication.md). Publication-update commit
+will require its own verified fast-forward push. The PAT value was not written to repo
+files/config/URL, **but was pasted into this chat/tool input**: advise user to rotate or
+revoke it after the last push. New-chat continuity remains PENDING.

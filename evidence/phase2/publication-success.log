@@ -1,0 +1,13 @@
+# Phase-2 publication, anonymous verification 2026-11-07T04:57:25Z
+Credential use: user-authorized PAT, in process memory and transient helper environment only; never written to workspace, git config or URL. Token value not recorded.
+Authenticated result returned: API /user HTTP 200 login=smahud; repo API HTTP 200 push_permission=true default_branch=master private=false.
+Push result: exit=0, fast-forward 79412fd..600f762 HEAD -> master; no force push.
+anonymous_remote_refs
+ref: refs/heads/master	HEAD
+600f7620d569bf9f4986fdb87a4387ee50ea6400	HEAD
+600f7620d569bf9f4986fdb87a4387ee50ea6400	refs/heads/master
+anonymous_repo_api_status repo status 200 sha master private False
+closing_commit status 200 sha 600f7620d569bf9f4986fdb87a4387ee50ea6400 private n/a
+report status 200 sha b0b8eae5794930990f9b7b8340d589ffe2a30cb4 private n/a
+local_head 600f7620d569bf9f4986fdb87a4387ee50ea6400
+# finished 2026-11-07T04:57:26Z

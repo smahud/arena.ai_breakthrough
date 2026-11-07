@@ -57,3 +57,14 @@ second **within-chat** turn boundary, **not** a new chat session or compaction t
 zero broken local links, all F-01…F-22 definitions present, `src/minagent` unchanged;
 anonymous remote still `79412fd`.
 [`closing-validation.log`](../evidence/phase2/closing-validation.log) preserves output.
+
+**Delivery outcome, 2026-11-07T04:57Z (supersedes only earlier publication status):**
+a later user-provided PAT authenticated GitHub user `smahud`, confirmed repository
+push permission, and enabled a **non-force fast-forward push** from `79412fd` to the
+six-commit closing report `600f762`. An independent **anonymous** remote HEAD and
+three public API endpoints (repo, commit, report content) confirmed publication
+([`publication-success.log`](../evidence/phase2/publication-success.log)). The
+17:40Z failure and 19:08Z remote check above remain authentic *dated* observations;
+they are not the final state. Read [`phase2-publication.md`](phase2-publication.md) for
+commit links and credential-handling boundaries. Genuine new-chat continuity remains
+PENDING; publication is a separate delivery outcome.

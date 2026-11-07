@@ -9,17 +9,17 @@ methodology; see `docs/limitations.md` L-1 for the epistemic ceiling this impose
 **44/44 tests green** · validation pipeline OK. **Phase 2:** EXP-10/11 executed,
 main repository **45/45** tests green after one security regression, pipeline **7/7**;
 experimental fixture **50/50** tests green in an independently replayed worktree.
-The **historical baseline is PUBLISHED — PUBLIC**:
-[github.com/smahud/arena.ai_breakthrough](https://github.com/smahud/arena.ai_breakthrough)
-(created private 15:08Z; public since 16:03Z on explicit user authorization, anonymously
-verified; full record in `report/phase-8-delivery.md`). **Phase-2 commits are local,
-NOT published:** a noninteractive `git push --dry-run` failed with exit 128 because no
-GitHub credentials were available and the GitHub connector is unsupported; anonymous
-remote master remained `79412fd` ([publication record](evidence/phase2/publication-attempt.log)).
-No token was stored, no force push attempted. **Phase-2 final report:**
-[`report/phase2-final-report.md`](report/phase2-final-report.md) (seven questions,
-local commit/evidence map, publication blocker). Historical report:
-[`FINAL_REPORT.md`](FINAL_REPORT.md).
+**PUBLISHED — PUBLIC:** [github.com/smahud/arena.ai_breakthrough](https://github.com/smahud/arena.ai_breakthrough).
+The original baseline was published 2026-11-06; the first six Phase-2 commits were
+fast-forward pushed with the user's later authorization on 2026-11-07 (anonymous
+`master` and [closing commit `600f762`](https://github.com/smahud/arena.ai_breakthrough/commit/600f7620d569bf9f4986fdb87a4387ee50ea6400) verified).
+The **earlier** no-auth dry-run failure is preserved in
+[`publication-attempt.log`](evidence/phase2/publication-attempt.log); its supersession,
+public verification and credential-handling limits are in
+[`phase2-publication.md`](report/phase2-publication.md) and
+[`publication-success.log`](evidence/phase2/publication-success.log). No force push.
+**Phase-2 final report:** [`report/phase2-final-report.md`](report/phase2-final-report.md)
+(seven research questions); historical report: [`FINAL_REPORT.md`](FINAL_REPORT.md).
 
 ## What's here
 

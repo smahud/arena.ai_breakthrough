@@ -16,4 +16,11 @@ A1 (single generative loop), A2 (planner/executor split) and A3 (specialists) ca
 
 **Reference implementation decision:** keep `src/minagent` and its `ThreadPoolExecutor` toy in-process concurrency **unchanged**; no new agent, message bus, model-router abstraction or database is justified by Phase-2 evidence. `minagent`'s parallelism is a separate *implementation choice*, not proof of the platform's mechanism. Port only the **verified** static-file containment correction in main taskledger plus regression test (F-22). See [`reference-architecture/ARCHITECTURE.md`](../reference-architecture/ARCHITECTURE.md) for functional decomposition and [`docs/architecture-analysis.md`](../docs/architecture-analysis.md) §7 for the dated addendum.
 
+**Publication addendum (2026-11-07):** the 17:40Z no-auth failure above was
+correct **at that checkpoint**, then superseded after the user supplied a PAT: standard
+no-force HTTPS git push succeeded and anonymous remote/API checks verified Phase-2
+HEAD `600f762` ([publication report](phase2-publication.md)). This change in
+*authorized access*, not platform architecture, explains the delivery difference.
+GitHub connector still returned `unsupported`; no internal tool-routing claim follows.
+
 **Minimum next authorized discrimination:** two repeated same-session, matched N=4/d=1 explicit-wrapper vs *actually submitted* direct multi-call batches **if the supported interface permits**, with per-call inside-tool intervals and both result envelopes. If no direct mode is available, mark unavailable rather than simulating it. Even a repeatable mode difference would not identify agents/models. Separately, genuine **new-chat** artifact-vs-conversation continuity remains PENDING until a real user session boundary and contradictory request occur.

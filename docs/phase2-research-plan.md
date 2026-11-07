@@ -76,3 +76,11 @@ EXP-11 has two meaningful tiers: first a limited feature with four constraints; 
 - The originally planned **genuine new-chat** continuity steps 3–4 remain **PENDING**.
   The observed same-chat turn is a narrower result, not a substitute; no compaction
   event or internal model trace was observed.
+
+**Delivery addendum (2026-11-07, after research/report commits):** an earlier no-auth
+push dry-run failed and is preserved in `publication-attempt.log`; after the user
+explicitly supplied a PAT, direct no-force git push succeeded and anonymous Git/API
+checks verified public `master=600f762`, with Phase-2 report content available.
+See `report/phase2-publication.md` and `publication-success.log`. This changes
+publication status only, **not** pre-registered hypotheses, observed scheduling,
+or pending new-chat continuity. The PAT entered chat/tool input, so advise rotation.

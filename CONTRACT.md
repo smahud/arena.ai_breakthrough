@@ -70,6 +70,20 @@ separate Phase 2 evidence file without replacing the earlier result). Run tests 
 green before each commit, record exit codes, and keep root `report/` phase reports. Neither
 research security boundaries nor anti-overengineering requirements are relaxed.
 
+## Phase-2 publication outcome addendum — 2026-11-07 (delivery status only)
+
+The preceding Phase-2 “must independently verify its own push” was a pending condition
+**at that time**. The user later explicitly supplied a PAT for this repository; authorized
+non-force direct HTTPS git push moved public `master` from `79412fd` to closing report
+`600f762`, and independent anonymous Git/API requests confirmed that HEAD, the commit and
+the report. See `report/phase2-publication.md`, `evidence/phase2/publication-success.log`.
+GitHub connector remained `unsupported`. Rule 11's ban on extracting protected *internal*
+credentials remains in force: the research did not probe for them; a user-supplied delivery
+credential was used only for the requested push and not written into repository
+files/config/URL. Because the user pasted it in this chat/tool input, recommend
+revoking/rotating it after publication. The earlier failed no-auth dry-run remains
+preserved separately; it was not retroactively changed into a success.
+
 ## Constraint C-1 (used by Experiment 04)
 
 > **C-1:** All Python artifacts in this repository must run on the stock sandbox interpreter
